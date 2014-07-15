@@ -49,11 +49,12 @@ public class MyActivity extends Activity {
     }
 
     public class Contact{
-        public String firstName;
-        public String lastName;
-        public String email;
-        public String address;
-        public String phone_num;
+        String firstName;
+        String lastName;
+        String email;
+        String address;
+        String phone_num;
+        int id;
 
         public Contact(){
             firstName = "";
@@ -62,7 +63,7 @@ public class MyActivity extends Activity {
             address = "";
             phone_num = "";
         }
-
+        //constructor
         public Contact(String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
             firstName = startFirstName;
             lastName = startLastName;
@@ -70,6 +71,16 @@ public class MyActivity extends Activity {
             address = startAddress;
             phone_num = startPhone_num;
         }
+        //constructor with id value
+        public Contact(int id, String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
+            firstName = startFirstName;
+            lastName = startLastName;
+            email = startEmail;
+            address = startAddress;
+            phone_num = startPhone_num;
+        }
+        
+
     }
 
     @Override
