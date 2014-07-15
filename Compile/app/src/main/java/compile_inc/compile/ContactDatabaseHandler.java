@@ -5,6 +5,8 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.List;
+
 /**
  * Created by DUCA on 7/15/2014.
  */
@@ -46,4 +48,32 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
         //create tables again after reset
         onCreate(db);
     }
+
+    //operations for create, read, update, delete. --- TODO, make this stuff work ---
+    //adds a new contact to the database
+    public void dbAddContact(Contact contact) {
+
+    }
+    //gets a single contact from the database
+    public Contact dbGetContact(int id) {
+        Contact contact = new Contact();
+        return contact;
+    }
+    //gets a list of all contacts in the database
+//    public List<Contact> dbGetAllContacts() {
+//
+//    }
+    //gets number of contacts
+    public int dbGetContactsCount() {
+        return 0;
+    }
+    //updating single contact
+    public int dbUpdateContact(Contact contact) {
+        return 0;
+    }
+    //delete single contact
+    public void dbDeleteContact(Contact contact) {
+
+    }
+
 }
