@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.io.FileOutputStream;
 
 
-public class MyActivity extends Activity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
