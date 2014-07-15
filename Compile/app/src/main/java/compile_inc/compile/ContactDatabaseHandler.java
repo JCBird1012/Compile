@@ -41,7 +41,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //drop older table
-        db.execSQL("DROP TABLE IF EXISTS" + TABLE_CONTACTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
 
         //create tables again after reset
         onCreate(db);
