@@ -18,7 +18,7 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
 
-        Contact contact = new Contact("John", "Gallagher", "johnjon8@gmail.com", "2934 Belmont Ave Ardmore PA.");
+        Contact contact = new Contact("John", "Gallagher", "johnjon8@gmail.com", "2934 Belmont Ave Ardmore PA.", "2672401429");
         saveContact(contact);
 
     }
@@ -44,19 +44,29 @@ public class MyActivity extends Activity {
 
 
 
-}
+    }
 
     public class Contact{
         public String firstName;
         public String lastName;
         public String email;
         public String address;
+        public String phone_num;
 
-        public Contact(String startFirstName, String startLastName, String startEmail, String startAddress){
+        public Contact(){
+            firstName = "";
+            lastName = "";
+            email = "";
+            address = "";
+            phone_num = "";
+        }
+
+        public Contact(String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
             firstName = startFirstName;
             lastName = startLastName;
             email = startEmail;
             address = startAddress;
+            phone_num = startPhone_num;
         }
     }
 
