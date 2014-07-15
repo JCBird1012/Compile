@@ -9,6 +9,9 @@ import com.google.gson.Gson;
 import android.widget.TextView;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.ContactsContract;
+import android.content.ContentResolver;
+import android.database.Cursor;
 
 
 import java.io.FileOutputStream;
@@ -26,6 +29,8 @@ public class MainActivity extends Activity {
 
 
         saveContact(contact);
+        getContact();
+
     }
 
     //creates an initial file in which the contact json info will be stored, only needs to be called once ever.
@@ -48,6 +53,21 @@ public class MainActivity extends Activity {
 //        fos.close();
 
 
+
+    }
+
+
+    public void getContact () {
+        Uri CONTENT_URI = ContactsContract.Contacts.CONTENT_URI;
+        String _ID = ContactsContract.Contacts._ID;
+        String DISPLAY_NAME = ContactsContract.Contacts.DISPLAY_NAME;
+        String HAS_PHONE_NUMBER = ContactsContract.Contacts.HAS_PHONE_NUMBER;
+        Uri PhoneCONTENT_URI = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+        String Phone_CONTACT_ID = ContactsContract.CommonDataKinds.Phone.CONTACT_ID;
+        String NUMBER = ContactsContract.CommonDataKinds.Phone.NUMBER;
+        Uri EmailCONTENT_URI =  ContactsContract.CommonDataKinds.Email.CONTENT_URI;
+        String EmailCONTACT_ID = ContactsContract.CommonDataKinds.Email.CONTACT_ID;
+        String DATA = ContactsContract.CommonDataKinds.Email.DATA;
 
     }
 
