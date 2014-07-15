@@ -1,4 +1,4 @@
-package compileinc.compile;
+package compile_inc.compile;
 
 import android.app.Activity;
 import android.content.Context;
