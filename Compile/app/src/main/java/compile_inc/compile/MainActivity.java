@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main_activity);
 
 
-        Contact contact = new Contact("John", "Gallagher", "johnjon8@gmail.com", "2934 Belmont Ave Ardmore PA.", "2672401429");
+        Contact contact = new Contact(1, "John", "Gallagher", "johnjon8@gmail.com", "2934 Belmont Ave Ardmore PA.", "2672401429");
 
 
         saveContact(contact);
