@@ -18,13 +18,11 @@ public class MyActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-<<<<<<< HEAD:Compile/app/src/main/java/compileinc/compile/MyActivity.java
-        Contact contact = new Contact("John", "Gallagher", "johnjon8@gmail.com", "2934 Belmont Ave Ardmore PA.", "2672401429");
-=======
-        Contact contact = new Contact("John", "Gallagher", "johnjon8@gmail.com", "2934 Belmont Ave Ardmore, PA.");
->>>>>>> origin/master:Compile/app/src/main/java/compile_inc/compile/MyActivity.java
-        saveContact(contact);
 
+        Contact contact = new Contact("John", "Gallagher", "johnjon8@gmail.com", "2934 Belmont Ave Ardmore PA.", "2672401429");
+
+
+        saveContact(contact);
     }
 
     //creates an initial file in which the contact json info will be stored, only needs to be called once ever.
