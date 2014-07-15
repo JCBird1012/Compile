@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.google.gson.Gson;
+import android.widget.TextView;
+
 
 
 public class MyActivity extends Activity {
@@ -12,8 +15,34 @@ public class MyActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+
+        Contact contact = new Contact("John", "Gallagher", "johnjon8@gmail.com", "2934 Belmont Ave Ardmore PA.");
+        saveContact(contact);
+
     }
 
+
+    public void saveContact(Contact contact) {
+        Gson gson = new Gson();
+        String json = gson.toJson(contact);
+        TextView t = (TextView)findViewById(R.id.testText);
+        t.append(json);
+        System.out.println(json);
+}
+
+    public class Contact{
+        public String firstName;
+        public String lastName;
+        public String email;
+        public String address;
+
+        public Contact(String startFirstName, String startLastName, String startEmail, String startAddress){
+            firstName = startFirstName;
+            lastName = startLastName;
+            email = startEmail;
+            address = startAddress;
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
