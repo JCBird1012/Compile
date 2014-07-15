@@ -1,8 +1,10 @@
 package compile_inc.compile;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.google.gson.Gson;
@@ -24,38 +26,35 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        Log.d("Creating: ", "Creating ..");
+        // initializes the local database of contacts
+        ContactDatabaseHandler db = new ContactDatabaseHandler(this);
 
-        Contact contact = new Contact(1, "John", "Gallagher", "johnjon8@gmail.com",
+
+
+        Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
                 "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
 
+        // the db.dbAddContact will a contact to the database initialized above! (hopefully...)
+        db.dbAddContact(testContact);
 
-        saveContact(contact);
+        //Contact retrievedContact = db.dbGetContact(0);
+
+        //testPrintContact(retrievedContact);
+        //idk what max is doing here, but he should put in comments so that his team can understand
         getAndroidContacts();
 
     }
 
-    //creates an initial file in which the contact json info will be stored, only needs to be called once ever.
-    public void createFile(){
-        String file = "contactSave";
-      //  file.createNewFile();
-
-    }
-
-
-    public void saveContact(Contact contact) {
+    //just a simple test, not permanent
+    public void testPrintContact(Contact contact) {
         Gson gson = new Gson();
         String json = gson.toJson(contact);
-        TextView t = (TextView)findViewById(R.id.testText);
+        TextView t = (TextView) findViewById(R.id.testText);
         t.append(json);
         String FILENAME = "contactSave";
-//        FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-//
-//        fos.write(json.getBytes());
-//        fos.close();
-
-
-
     }
+
 
 
     public void getAndroidContacts () {

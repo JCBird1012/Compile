@@ -3,7 +3,6 @@ package compile_inc.compile;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -18,8 +17,9 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     //database name
     private static final String DATABASE_NAME = "contactsDatabase";
-
+    //contacts table name
     private static final String TABLE_CONTACTS = "contacts";
+    // contacts table column names
     private static final String KEY_ID = "id";
     private static final String KEY_FIRST_NAME = "first_name";
     private static final String KEY_LAST_NAME = "last_name";
@@ -36,10 +36,11 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
     //creating tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE_TABLE" + TABLE_CONTACTS + "(" + KEY_ID + " INTEGER PRIMARY KEY," +
-                KEY_FIRST_NAME + " TEXT," + KEY_LAST_NAME + " TEXT," + KEY_EMAIL + " TEXT," + KEY_ADDRESS +
+        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "(" + KEY_ID +
+                " INTEGER PRIMARY KEY," + KEY_FIRST_NAME + " TEXT," + KEY_LAST_NAME +
+                " TEXT," + KEY_EMAIL + " TEXT," + KEY_ADDRESS +
                 " TEXT," + KEY_PHONE_NUM + " TEXT," + KEY_DESCRIPTION + " TEXT" + ")";
-
+        db.execSQL(CREATE_CONTACTS_TABLE);
     }
 
     //prolly not gonna use this ever except for reset of app maybe
@@ -52,12 +53,12 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //operations for create, read, update, delete. --- TODO, make this stuff work ---
+    //operations for create, read, update, delete.
     //adds a new contact to the database
     public void dbAddContact(Contact contact) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_FIRST_NAME,contact.getFirstName());
+        values.put(KEY_FIRST_NAME, contact.getFirstName());
         values.put(KEY_LAST_NAME, contact.getLastName());
         values.put(KEY_EMAIL, contact.getEmail());
         values.put(KEY_ADDRESS, contact.getAddress());
