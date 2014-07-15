@@ -30,8 +30,7 @@ public class NewContactActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_add_contact) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
