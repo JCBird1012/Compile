@@ -72,14 +72,15 @@ public class MyActivity extends Activity {
             phone_num = startPhone_num;
         }
         //constructor with id value
-        public Contact(int id, String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
+        public Contact(int _id, String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
             firstName = startFirstName;
             lastName = startLastName;
             email = startEmail;
             address = startAddress;
             phone_num = startPhone_num;
+            id = _id;
         }
-        
+
 
     }
 
