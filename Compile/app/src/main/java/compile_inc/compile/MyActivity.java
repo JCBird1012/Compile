@@ -81,7 +81,7 @@ public class MyActivity extends Activity {
             this.id = _id;
         }
 
-        //the next bunch of functions will be assigners
+        //the next bunch of functions will be assigners/mutators
         //sets id
         public void setID(int _id) {
             this.id = _id;
@@ -105,6 +105,32 @@ public class MyActivity extends Activity {
         //sets the phone number
         public void setPhone_num(String startPhone_num) {
             this.phone_num = startPhone_num;
+        }
+
+        //the next set of functions will be accessors
+        //gets thi ID of the contact
+        public int getId() {
+            return this.id;
+        }
+        //gets the first name
+        public String getFirstName() {
+            return this.firstName;
+        }
+        //gets last name
+        public String getLastName() {
+            return this.lastName;
+        }
+        //gets email
+        public String getEmail() {
+            return this.email;
+        }
+        //gets address
+        public String getAddress() {
+            return this.address;
+        }
+        //gets phone number
+        public String getPhone_num() {
+            return this.phone_num;
         }
 
 
