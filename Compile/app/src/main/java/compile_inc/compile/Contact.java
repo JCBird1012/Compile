@@ -9,15 +9,19 @@ public class Contact{
     String email;
     String address;
     String phone_num;
+    String description;
     int id;
 
+    //default constructor
     public Contact(){
         firstName = "";
         lastName = "";
         email = "";
         address = "";
         phone_num = "";
+        description = "";
     }
+
     //constructor
     public Contact(String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
         this.firstName = startFirstName;
@@ -26,6 +30,7 @@ public class Contact{
         this.address = startAddress;
         this.phone_num = startPhone_num;
     }
+
     //constructor with id value
     public Contact(int _id, String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
         this.firstName = startFirstName;
@@ -61,7 +66,10 @@ public class Contact{
     public void setPhone_num(String startPhone_num) {
         this.phone_num = startPhone_num;
     }
-
+    //sets the description
+    public void setDescription(String startDescription) {
+        this.description = startDescription;
+    }
     //the next set of functions will be accessors
     //gets thi ID of the contact
     public int getId() {
@@ -87,7 +95,9 @@ public class Contact{
     public String getPhone_num() {
         return this.phone_num;
     }
-
-
+    //gets the description
+    public String getDescription() {
+        return this.description;
+    }
 
 }
