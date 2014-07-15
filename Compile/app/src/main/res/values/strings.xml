@@ -3,5 +3,8 @@
 
     <string name="app_name">Compile</string>
     <string name="action_add_contact">Add Contact</string>
+    <string name="title_activity_contact">ContactActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
