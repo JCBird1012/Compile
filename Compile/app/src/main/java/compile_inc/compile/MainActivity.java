@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
 
 
         saveContact(contact);
-        getContact();
+        getAndroidContacts();
 
     }
 
@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
     }
 
 
-    public void getContact () {
+    public void getAndroidContacts () {
         Uri CONTENT_URI = ContactsContract.Contacts.CONTENT_URI;
         String _ID = ContactsContract.Contacts._ID;
         String DISPLAY_NAME = ContactsContract.Contacts.DISPLAY_NAME;
