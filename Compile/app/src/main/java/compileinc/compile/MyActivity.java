@@ -1,12 +1,14 @@
 package compileinc.compile;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.google.gson.Gson;
 import android.widget.TextView;
 
+import java.io.FileOutputStream;
 
 
 public class MyActivity extends Activity {
@@ -21,13 +23,27 @@ public class MyActivity extends Activity {
 
     }
 
+    //creates an initial file in which the contact json info will be stored, only needs to be called once ever.
+    public void createFile(){
+        String file = "contactSave";
+      //  file.createNewFile();
+
+    }
+
 
     public void saveContact(Contact contact) {
         Gson gson = new Gson();
         String json = gson.toJson(contact);
         TextView t = (TextView)findViewById(R.id.testText);
         t.append(json);
-        System.out.println(json);
+        String FILENAME = "contactSave";
+//        FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+//
+//        fos.write(json.getBytes());
+//        fos.close();
+
+
+
 }
 
     public class Contact{
@@ -63,3 +79,5 @@ public class MyActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+
