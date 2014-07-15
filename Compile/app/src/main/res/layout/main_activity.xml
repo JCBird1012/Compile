@@ -10,6 +10,10 @@
 
     <TextView
         android:id="@+id/testText"
+<<<<<<< HEAD:Compile/app/src/main/res/layout/main_activity.xml
+=======
+        android:text="@string/hello_world"
+>>>>>>> origin/John:Compile/app/src/main/res/layout/activity_my.xml
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
