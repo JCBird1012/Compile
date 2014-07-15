@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".AddContact" >
+    <item android:id="@+id/action_add_contact"
+        android:title="@string/action_addcontact"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon ="@drawable/ic_action_new"/>
+</menu>
