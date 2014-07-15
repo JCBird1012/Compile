@@ -23,22 +23,26 @@ public class Contact{
     }
 
     //constructor
-    public Contact(String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
+    public Contact(String startFirstName, String startLastName, String startEmail,
+                   String startAddress, String startPhone_num, String startDescription){
         this.firstName = startFirstName;
         this.lastName = startLastName;
         this.email = startEmail;
         this.address = startAddress;
         this.phone_num = startPhone_num;
+
     }
 
     //constructor with id value
-    public Contact(int _id, String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
+    public Contact(int _id, String startFirstName, String startLastName, String startEmail,
+                   String startAddress, String startPhone_num, String startDescription){
         this.firstName = startFirstName;
         this.lastName = startLastName;
         this.email = startEmail;
         this.address = startAddress;
         this.phone_num = startPhone_num;
         this.id = _id;
+        this.description = startDescription;
     }
 
     //the next bunch of functions will be assigners/mutators
