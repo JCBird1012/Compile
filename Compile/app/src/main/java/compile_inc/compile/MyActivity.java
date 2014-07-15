@@ -1,4 +1,4 @@
-package compileinc.compile;
+package compile_inc.compile;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,9 +16,13 @@ public class MyActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my);
+        setContentView(R.layout.main_activity);
 
+<<<<<<< HEAD:Compile/app/src/main/java/compileinc/compile/MyActivity.java
         Contact contact = new Contact("John", "Gallagher", "johnjon8@gmail.com", "2934 Belmont Ave Ardmore PA.", "2672401429");
+=======
+        Contact contact = new Contact("John", "Gallagher", "johnjon8@gmail.com", "2934 Belmont Ave Ardmore, PA.");
+>>>>>>> origin/master:Compile/app/src/main/java/compile_inc/compile/MyActivity.java
         saveContact(contact);
 
     }

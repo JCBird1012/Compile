@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Compile</string>
-    <string name="hello_world">Hello World!</string>
-    <string name="action_addcontact">Add Contact</string>
+    <string name="action_add_contact">Add Contact</string>
 
 </resources>
