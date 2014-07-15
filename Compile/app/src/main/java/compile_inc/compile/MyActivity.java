@@ -65,20 +65,25 @@ public class MyActivity extends Activity {
         }
         //constructor
         public Contact(String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
-            firstName = startFirstName;
-            lastName = startLastName;
-            email = startEmail;
-            address = startAddress;
-            phone_num = startPhone_num;
+            this.firstName = startFirstName;
+            this.lastName = startLastName;
+            this.email = startEmail;
+            this.address = startAddress;
+            this.phone_num = startPhone_num;
         }
         //constructor with id value
         public Contact(int _id, String startFirstName, String startLastName, String startEmail, String startAddress, String startPhone_num){
-            firstName = startFirstName;
-            lastName = startLastName;
-            email = startEmail;
-            address = startAddress;
-            phone_num = startPhone_num;
-            id = _id;
+            this.firstName = startFirstName;
+            this.lastName = startLastName;
+            this.email = startEmail;
+            this.address = startAddress;
+            this.phone_num = startPhone_num;
+            this.id = _id;
+        }
+        //get id
+        public void getID(int _id) {
+            this.id = _id;
+
         }
 
 
