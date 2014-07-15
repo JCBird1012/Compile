@@ -80,11 +80,33 @@ public class MyActivity extends Activity {
             this.phone_num = startPhone_num;
             this.id = _id;
         }
-        //get id
-        public void getID(int _id) {
-            this.id = _id;
 
+        //the next bunch of functions will be assigners
+        //sets id
+        public void setID(int _id) {
+            this.id = _id;
         }
+        //sets the first name
+        public void setFirstName(String startFirstName) {
+            this.firstName = startFirstName;
+        }
+        //sets the last name
+        public void setLastName(String startLastName) {
+            this.lastName = startLastName;
+        }
+        //sets the email
+        public void setEmail(String startEmail) {
+            this.email = startEmail;
+        }
+        //sets the address
+        public void setAddress(String startAddress) {
+            this.address = startAddress;
+        }
+        //sets the phone number
+        public void setPhone_num(String startPhone_num) {
+            this.phone_num = startPhone_num;
+        }
+
 
 
     }
