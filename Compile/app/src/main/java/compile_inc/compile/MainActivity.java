@@ -23,6 +23,9 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
+    //declares the database
+    protected ContactDatabaseHandler db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,19 +33,32 @@ public class MainActivity extends Activity {
 
         Log.d("Creating: ", "Creating ..");
         // initializes the local database of contacts
-        ContactDatabaseHandler db = new ContactDatabaseHandler(this);
+        db = new ContactDatabaseHandler(this);
 
+        testFunction();
+        //idk what max is doing here, but he should put in comments so that his team can understand
+        getAndroidContacts();
 
+    }
 
+    //A function meant to test the database and other functions --- TODO remove this eventually ---
+    public void testFunction(){
         Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
                 "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
 
 
         Contact testContact2 = new Contact("Max", "Plank", "yo@google.com", "2939 Element St",
                 "5554443322", "dis guy is cool too!");
-        // the db.dbAddContact will a contact to the database initialized above! (hopefully...)
-        db.dbAddContact(testContact);
-        db.dbAddContact(testContact2);
+        // the db.dbAddContact will a contact to the database initialized above if there are
+        // fewer 2 already in existence!
+        // (hopefully...)
+        List<Contact> allContacts = db.dbGetAllContacts();
+
+        if(2 > allContacts.size()) {
+            db.dbAddContact(testContact);
+            db.dbAddContact(testContact2);
+        }
+
 
         Log.d("Retrieving:  ", "Retrieving ..");
         Contact retrievedContact = db.dbGetContact(1);
@@ -50,7 +66,7 @@ public class MainActivity extends Activity {
 
         //reads all of the contacts currently in the database
         Log.d("Reading: ","Reading all contacts ..");
-        List<Contact> allContacts = db.dbGetAllContacts();
+        allContacts = db.dbGetAllContacts();
 
 
         //prints some contacts for testing purposes
@@ -60,14 +76,6 @@ public class MainActivity extends Activity {
             testPrintContact(allContacts.get(i));
             Log.d("Loop:  ", "Running loop ..");
         }
-
-//        testPrintContact(testContact);
-//        testPrintContact(testContact2);
-//        testPrintContact(retrievedContact);
-//        testPrintContact(retrievedContact2);
-        //idk what max is doing here, but he should put in comments so that his team can understand
-        getAndroidContacts();
-
     }
 
     //just a simple test, not permanent
