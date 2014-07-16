@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 
         Log.d("Creating: ", "Creating ..");
         // initializes the local database of contacts
-        //ContactDatabaseHandler db = new ContactDatabaseHandler(this);
+        ContactDatabaseHandler db = new ContactDatabaseHandler(this);
 
 
 
