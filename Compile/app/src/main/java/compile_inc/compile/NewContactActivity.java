@@ -33,10 +33,9 @@ public class NewContactActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_add_contact) {
-<<<<<<< HEAD
+
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-=======
             Log.d("Contact_add:  ", "Adding a Contact");
             EditText text = (EditText)findViewById(R.id.new_contactFirstName);
             String _firstName = text.getText().toString();
@@ -47,7 +46,7 @@ public class NewContactActivity extends Activity {
             Contact newContact = new Contact(_firstName, _lastName, _email);
             MainActivity.db.dbAddContact(newContact);
             return true;
->>>>>>> origin/master
+
         }
         return super.onOptionsItemSelected(item);
     }
