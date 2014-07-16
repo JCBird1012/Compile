@@ -104,6 +104,8 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
                 contact.setAddress(cursor.getString(4));
                 contact.setPhone_num(cursor.getString(5));
                 contact.setDescription(cursor.getString(6));
+                //adds contact to the list
+                contactList.add(contact);
             }   while (cursor.moveToNext());
         }
         //returns arraylist of contact objects with their id's

@@ -18,6 +18,7 @@ import android.database.Cursor;
 
 
 import java.io.FileOutputStream;
+import java.util.List;
 
 
 public class MainActivity extends Activity {
@@ -47,13 +48,23 @@ public class MainActivity extends Activity {
         Contact retrievedContact = db.dbGetContact(1);
         Contact retrievedContact2 = db.dbGetContact(2);
 
+        //reads all of the contacts currently in the database
+        Log.d("Reading: ","Reading all contacts ..");
+        List<Contact> allContacts = db.dbGetAllContacts();
+
 
         //prints some contacts for testing purposes
         Log.d("Printing:  ", "Printing ..");
-        testPrintContact(testContact);
-        testPrintContact(testContact2);
-        testPrintContact(retrievedContact);
-        testPrintContact(retrievedContact2);
+        Log.d("Number of contacts", String.valueOf(allContacts.size()));
+        for (int i = 0; i < allContacts.size(); i++) {
+            testPrintContact(allContacts.get(i));
+            Log.d("Loop:  ", "Running loop ..");
+        }
+
+//        testPrintContact(testContact);
+//        testPrintContact(testContact2);
+//        testPrintContact(retrievedContact);
+//        testPrintContact(retrievedContact2);
         //idk what max is doing here, but he should put in comments so that his team can understand
         getAndroidContacts();
 
@@ -61,8 +72,6 @@ public class MainActivity extends Activity {
 
     //just a simple test, not permanent
     public void testPrintContact(Contact contact) {
-        //Gson gson = new Gson();
-        //String json = gson.toJson(contact);
         TextView t = (TextView) findViewById(R.id.testText);
 
         t.append("First Name: " + contact.getFirstName() + ", Last Name: " + contact.getLastName
