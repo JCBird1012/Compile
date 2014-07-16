@@ -15,7 +15,7 @@
         </activity>
         <activity
             android:name=".NewContactActivity"
-            android:label="@string/title_activity_contact"
+            android:label="@string/action_add_contact"
             android:parentActivityName=".NewContactActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
