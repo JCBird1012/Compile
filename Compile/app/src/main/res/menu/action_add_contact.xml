@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".AddContact" >
+    tools:context=".AddContactInAddContactView" >
     <item android:id="@+id/action_add_contact"
         android:title="Add"
         android:orderInCategory="100"
