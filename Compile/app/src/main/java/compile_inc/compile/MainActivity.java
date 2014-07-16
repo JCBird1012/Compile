@@ -2,6 +2,7 @@ package compile_inc.compile;
 
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,12 +36,24 @@ public class MainActivity extends Activity {
         Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
                 "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
 
+
+        Contact testContact2 = new Contact("Max", "Plank", "yo@google.com", "2939 Element St",
+                "5554443322", "dis guy is cool too!");
         // the db.dbAddContact will a contact to the database initialized above! (hopefully...)
         db.dbAddContact(testContact);
+        db.dbAddContact(testContact2);
+
         Log.d("Retrieving:  ", "Retrieving ..");
-        //Contact retrievedContact = db.dbGetContact(0);
+        Contact retrievedContact = db.dbGetContact(1);
+        Contact retrievedContact2 = db.dbGetContact(2);
+
+
+        //prints some contacts for testing purposes
+        Log.d("Printing:  ", "Printing ..");
         testPrintContact(testContact);
-        //testPrintContact(retrievedContact);
+        testPrintContact(testContact2);
+        testPrintContact(retrievedContact);
+        testPrintContact(retrievedContact2);
         //idk what max is doing here, but he should put in comments so that his team can understand
         getAndroidContacts();
 
@@ -52,7 +65,8 @@ public class MainActivity extends Activity {
         //String json = gson.toJson(contact);
         TextView t = (TextView) findViewById(R.id.testText);
 
-        t.append("First Name: " + contact.getFirstName() + ", Last Name: " + contact.getLastName());
+        t.append("First Name: " + contact.getFirstName() + ", Last Name: " + contact.getLastName
+                () + "\n");
     }
 
 
