@@ -63,6 +63,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="1_gson-2.2.4" level="project" />
+    <orderEntry type="library" exported="" name="circleimageview-1.1.1" level="project" />
   </component>
 </module>
 
