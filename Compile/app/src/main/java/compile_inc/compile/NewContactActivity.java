@@ -19,7 +19,7 @@ public class NewContactActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.add_contact, menu);
+        getMenuInflater().inflate(R.menu.action_add_contact, menu);
         return true;
     }
 
