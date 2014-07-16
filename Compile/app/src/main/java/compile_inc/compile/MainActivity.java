@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
         db.dbAddContact(testContact);
         Log.d("Retrieving:  ", "Retrieving ..");
         //Contact retrievedContact = db.dbGetContact(0);
-
+        testPrintContact(testContact);
         //testPrintContact(retrievedContact);
         //idk what max is doing here, but he should put in comments so that his team can understand
         getAndroidContacts();
@@ -48,11 +48,11 @@ public class MainActivity extends Activity {
 
     //just a simple test, not permanent
     public void testPrintContact(Contact contact) {
-        Gson gson = new Gson();
-        String json = gson.toJson(contact);
+        //Gson gson = new Gson();
+        //String json = gson.toJson(contact);
         TextView t = (TextView) findViewById(R.id.testText);
-        t.append(json);
-        String FILENAME = "contactSave";
+
+        t.append("First Name: " + contact.getFirstName() + ", Last Name: " + contact.getLastName());
     }
 
 
