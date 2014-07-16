@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
 
         // the db.dbAddContact will a contact to the database initialized above! (hopefully...)
         db.dbAddContact(testContact);
-
+        Log.d("Retrieving:  ", "Retrieving ..");
         //Contact retrievedContact = db.dbGetContact(0);
 
         //testPrintContact(retrievedContact);
