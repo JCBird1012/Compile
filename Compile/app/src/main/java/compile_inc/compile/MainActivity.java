@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
                 "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
 
         // the db.dbAddContact will a contact to the database initialized above! (hopefully...)
-        //db.dbAddContact(testContact);
+        db.dbAddContact(testContact);
 
         //Contact retrievedContact = db.dbGetContact(0);
 
