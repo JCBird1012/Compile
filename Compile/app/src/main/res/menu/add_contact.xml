@@ -5,5 +5,5 @@
         android:title="@string/action_add_contact"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon ="@drawable/ic_action_new"/>
+        android:icon ="@drawable/ic_action_user_add"/>
 </menu>
