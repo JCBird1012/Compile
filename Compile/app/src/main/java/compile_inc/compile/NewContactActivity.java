@@ -36,6 +36,7 @@ public class NewContactActivity extends Activity {
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+
             Log.d("Contact_add:  ", "Adding a Contact");
             EditText text = (EditText)findViewById(R.id.new_contactFirstName);
             String _firstName = text.getText().toString();
@@ -49,7 +50,7 @@ public class NewContactActivity extends Activity {
             String _phone = text.getText().toString();
             Contact newContact = new Contact(_firstName, _lastName, _email, _address, _phone);
             MainActivity.db.dbAddContact(newContact);
-            return true;
+            
 
         }
         return super.onOptionsItemSelected(item);
