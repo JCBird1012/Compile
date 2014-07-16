@@ -33,10 +33,13 @@ public class Contact{
         this.description = startDescription;
     }
 
-    public Contact(String startFirstName, String startLastName, String startEmail) {
+    public Contact(String startFirstName, String startLastName, String startEmail,
+                   String startAddress, String startPhone_num) {
         this.firstName = startFirstName;
         this.lastName = startLastName;
         this.email = startEmail;
+        this.phone_num = startPhone_num;
+        this.address = startAddress;
     }
 
     //constructor with id value

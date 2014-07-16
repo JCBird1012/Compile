@@ -43,7 +43,11 @@ public class NewContactActivity extends Activity {
             String _lastName = text.getText().toString();
             text = (EditText)findViewById(R.id.new_contactEmail);
             String _email = text.getText().toString();
-            Contact newContact = new Contact(_firstName, _lastName, _email);
+            text = (EditText)findViewById(R.id.new_contactAddress);
+            String _address = text.getText().toString();
+            text = (EditText)findViewById(R.id.new_contactPhone);
+            String _phone = text.getText().toString();
+            Contact newContact = new Contact(_firstName, _lastName, _email, _address, _phone);
             MainActivity.db.dbAddContact(newContact);
             return true;
 
