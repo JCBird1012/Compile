@@ -24,7 +24,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     //declares the database
-    protected ContactDatabaseHandler db;
+    protected static ContactDatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +35,16 @@ public class MainActivity extends Activity {
         // initializes the local database of contacts
         db = new ContactDatabaseHandler(this);
 
-        testFunction();
+        //testFunction();
         //idk what max is doing here, but he should put in comments so that his team can understand
         getAndroidContacts();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        testFunction();
     }
 
     //A function meant to test the database and other functions --- TODO remove this eventually ---
@@ -72,6 +78,9 @@ public class MainActivity extends Activity {
         //prints some contacts for testing purposes
         Log.d("Printing:  ", "Printing ..");
         Log.d("Number of contacts", String.valueOf(allContacts.size()));
+        //clears current text
+        TextView t = (TextView) findViewById(R.id.testText);
+        t.setText("");
         for (int i = 0; i < allContacts.size(); i++) {
             testPrintContact(allContacts.get(i));
             Log.d("Loop:  ", "Running loop ..");
@@ -79,6 +88,7 @@ public class MainActivity extends Activity {
     }
 
     //just a simple test, not permanent
+
     public void testPrintContact(Contact contact) {
         TextView t = (TextView) findViewById(R.id.testText);
 
