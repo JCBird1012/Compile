@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".settings" >
+    <item android:id="@+id/action_settings"
+        android:title="Settings"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_settings"/>
+
+</menu>
