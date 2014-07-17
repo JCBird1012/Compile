@@ -2,22 +2,19 @@ package compile_inc.compile;
 
 
 import android.app.Activity;
-import android.content.ContentValues;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.google.gson.Gson;
+
+import android.widget.ListView;
 import android.widget.TextView;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.content.ContentResolver;
-import android.database.Cursor;
 
 
-import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,6 +22,8 @@ public class MainActivity extends Activity {
 
     //declares the database
     protected static ContactDatabaseHandler db;
+    private CardAdapter adapter;
+    private ListView card_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +34,17 @@ public class MainActivity extends Activity {
         // initializes the local database of contacts
         db = new ContactDatabaseHandler(this);
 
+        Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
+                "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
+        db.dbAddContact(testContact);
+
+        List<Contact> fullContacts =  db.dbGetAllContacts();
+
+        this.card_list = (ListView) findViewById(R.id.cardList);
+        this.adapter = new CardAdapter(this, (ArrayList) fullContacts);
+        this.card_list.setAdapter(this.adapter);
+        Log.d("Adapter:  ","it should have run");
+
         //testFunction();
         //idk what max is doing here, but he should put in comments so that his team can understand
         getAndroidContacts();
@@ -44,56 +54,58 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        testFunction();
+
+
+        //testFunction();
     }
 
     //A function meant to test the database and other functions --- TODO remove this eventually ---
     public void testFunction(){
-        Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
-                "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
-
-
-        Contact testContact2 = new Contact("Max", "Plank", "yo@google.com", "2939 Element St",
-                "5554443322", "dis guy is cool too!");
-        // the db.dbAddContact will a contact to the database initialized above if there are
-        // fewer 2 already in existence!
-        // (hopefully...)
-        List<Contact> allContacts = db.dbGetAllContacts();
-
-        if(2 > allContacts.size()) {
-            db.dbAddContact(testContact);
-            db.dbAddContact(testContact2);
-        }
-
-
-        Log.d("Retrieving:  ", "Retrieving ..");
-        Contact retrievedContact = db.dbGetContact(1);
-        Contact retrievedContact2 = db.dbGetContact(2);
-
-        //reads all of the contacts currently in the database
-        Log.d("Reading: ","Reading all contacts ..");
-        allContacts = db.dbGetAllContacts();
-
-
-        //prints some contacts for testing purposes
-        Log.d("Printing:  ", "Printing ..");
-        Log.d("Number of contacts", String.valueOf(allContacts.size()));
-        //clears current text
-        TextView t = (TextView) findViewById(R.id.testText);
-        t.setText("");
-        for (int i = 0; i < allContacts.size(); i++) {
-            testPrintContact(allContacts.get(i));
-            Log.d("Loop:  ", "Running loop ..");
-        }
+//        Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
+//                "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
+//
+//
+//        Contact testContact2 = new Contact("Max", "Plank", "yo@google.com", "2939 Element St",
+//                "5554443322", "dis guy is cool too!");
+//        // the db.dbAddContact will a contact to the database initialized above if there are
+//        // fewer 2 already in existence!
+//        // (hopefully...)
+//        List<Contact> allContacts = db.dbGetAllContacts();
+//
+//        if(2 > allContacts.size()) {
+//            db.dbAddContact(testContact);
+//            db.dbAddContact(testContact2);
+//        }
+//
+//
+//        Log.d("Retrieving:  ", "Retrieving ..");
+//        Contact retrievedContact = db.dbGetContact(1);
+//        Contact retrievedContact2 = db.dbGetContact(2);
+//
+//        //reads all of the contacts currently in the database
+//        Log.d("Reading: ","Reading all contacts ..");
+//        allContacts = db.dbGetAllContacts();
+//
+//
+//        //prints some contacts for testing purposes
+//        Log.d("Printing:  ", "Printing ..");
+//        Log.d("Number of contacts", String.valueOf(allContacts.size()));
+//        //clears current text
+//        TextView t = (TextView) findViewById(R.id.testText);
+//        t.setText("");
+//        for (int i = 0; i < allContacts.size(); i++) {
+//            testPrintContact(allContacts.get(i));
+//            Log.d("Loop:  ", "Running loop ..");
+//        }
     }
 
     //just a simple test, not permanent
 
     public void testPrintContact(Contact contact) {
-        TextView t = (TextView) findViewById(R.id.testText);
-
-        t.append("First Name: " + contact.getFirstName() + ", Last Name: " + contact.getLastName
-                () + "\n");
+//        TextView t = (TextView) findViewById(R.id.testText);
+//
+//        t.append("First Name: " + contact.getFirstName() + ", Last Name: " + contact.getLastName
+//                () + "\n");
     }
 
 

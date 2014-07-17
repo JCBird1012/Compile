@@ -97,7 +97,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Contact contact = new Contact();
-                contact.setID(Integer.parseInt(cursor.getString(0)));
+                contact.setID(cursor.getInt(0));
                 contact.setFirstName(cursor.getString(1));
                 contact.setLastName(cursor.getString(2));
                 contact.setEmail(cursor.getString(3));

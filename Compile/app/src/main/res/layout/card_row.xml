@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/card"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/card_row"
               android:orientation="vertical"
               android:padding="17dp"
               android:layout_width="fill_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="#DDDDDD">
     <TextView
-        android:id="@+id/card_name"
+        android:id="@+id/card_first_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dog Tag"
+        android:padding="13dp"/>
+    <TextView
+        android:id="@+id/card_last_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Dog Tag"
         android:padding="13dp"/>
 
-</LinearLayout>
+
+</RelativeLayout>
