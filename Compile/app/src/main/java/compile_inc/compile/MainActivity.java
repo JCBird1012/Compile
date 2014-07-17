@@ -34,9 +34,9 @@ public class MainActivity extends Activity {
         // initializes the local database of contacts
         db = new ContactDatabaseHandler(this);
 
-        Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
-                "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
-        db.dbAddContact(testContact);
+//        Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
+//                "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
+//        db.dbAddContact(testContact);
 
         List<Contact> fullContacts =  db.dbGetAllContacts();
         this.card_list = (ListView) findViewById(R.id.listView);
