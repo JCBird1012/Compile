@@ -39,8 +39,7 @@ public class MainActivity extends Activity {
         db.dbAddContact(testContact);
 
         List<Contact> fullContacts =  db.dbGetAllContacts();
-
-        this.card_list = (ListView) findViewById(R.id.cardList);
+        this.card_list = (ListView) findViewById(R.id.listView);
         this.adapter = new CardAdapter(this, (ArrayList) fullContacts);
         this.card_list.setAdapter(this.adapter);
         Log.d("Adapter:  ","it should have run");
@@ -54,7 +53,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        
 
         //testFunction();
     }
@@ -99,14 +98,6 @@ public class MainActivity extends Activity {
 //        }
     }
 
-    //just a simple test, not permanent
-
-    public void testPrintContact(Contact contact) {
-//        TextView t = (TextView) findViewById(R.id.testText);
-//
-//        t.append("First Name: " + contact.getFirstName() + ", Last Name: " + contact.getLastName
-//                () + "\n");
-    }
 
 
 
