@@ -56,7 +56,10 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        
+        List<Contact> fullContacts =  db.dbGetAllContacts();
+        this.card_list = (ListView) findViewById(R.id.listView);
+        this.adapter = new CardAdapter(this, (ArrayList) fullContacts);
+        this.card_list.setAdapter(this.adapter);
 
         //testFunction();
     }
@@ -139,6 +142,16 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(this, NewContactActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.action_delete_all) { //deletes all contact info from the database
+            List<Contact> contacts = db.dbGetAllContacts();
+            while(contacts.size()>0) {
+                db.dbDeleteContact(contacts.get(0));
+                contacts = db.dbGetAllContacts();
+
+            }
+            onResume();
+        }
+
         return super.onOptionsItemSelected(item);
 
 
