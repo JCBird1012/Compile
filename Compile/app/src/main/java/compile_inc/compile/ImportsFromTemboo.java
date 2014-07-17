@@ -59,12 +59,14 @@ public class ImportsFromTemboo {
 //probably should put ids into an array
 
 //used to get the latest tweet from people you are following
+//should probably be a loop for each id
     Show showChoreo = new Show(session);
 
     // Get an InputSet object for the choreo
     ShowInputSet showInputs = showChoreo.newInputSet();
 
 // Set inputs
+//We use the token + secret again
     showInputs.set_AccessToken("");
     showInputs.set_AccessTokenSecret("");
     showInputs.set_ConsumerSecret("");
@@ -74,7 +76,8 @@ public class ImportsFromTemboo {
 
     // Execute Choreo
     ShowResultSet showResults = showChoreo.execute(showInputs);
-//Response is JSon "text" is the text of a tweet
+//Response is in JSon, "text" is the text of a tweet
 //can also get profile image from response
+//Twitter
 
 }
