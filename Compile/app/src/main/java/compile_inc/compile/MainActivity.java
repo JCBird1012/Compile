@@ -44,10 +44,6 @@ public class MainActivity extends Activity {
         this.card_list.setAdapter(this.adapter);
         Log.d("Adapter:  ","it should have run");
 
-        //Contact testContact = db.dbGetContact(2);
-        //Log.d("testContact ID: ", String.valueOf(testContact.getId()));
-        //db.dbDeleteContact(testContact);
-        //testFunction();
         //idk what max is doing here, but he should put in comments so that his team can understand
         getAndroidContacts();
 
@@ -118,7 +114,6 @@ public class MainActivity extends Activity {
         Uri EmailCONTENT_URI =  ContactsContract.CommonDataKinds.Email.CONTENT_URI;
         String EmailCONTACT_ID = ContactsContract.CommonDataKinds.Email.CONTACT_ID;
         String DATA = ContactsContract.CommonDataKinds.Email.DATA;
-
     }
 
 
@@ -144,12 +139,17 @@ public class MainActivity extends Activity {
         }
         if (id == R.id.action_delete_all) { //deletes all contact info from the database
             List<Contact> contacts = db.dbGetAllContacts();
-            while(contacts.size()>0) {
+            while(contacts.size()>0) { //starts at the bottom of the database and works up,
+            // deleting everything while not changing any of their id's in the process. (efficient)
                 db.dbDeleteContact(contacts.get(contacts.size()-1));
                 contacts = db.dbGetAllContacts();
 
             }
             onResume();
+        }
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

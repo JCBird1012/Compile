@@ -9,5 +9,9 @@
     <string name="new_person_phone_field">Phone Number</string>
     <string name="new_person_address">Postal Address</string>
     <string name="new_contact_add">Add</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="settings_delete_all">Delete All Current Contacts!</string>
 
 </resources>
