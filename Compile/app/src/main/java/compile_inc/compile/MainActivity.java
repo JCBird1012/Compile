@@ -145,7 +145,7 @@ public class MainActivity extends Activity {
         if (id == R.id.action_delete_all) { //deletes all contact info from the database
             List<Contact> contacts = db.dbGetAllContacts();
             while(contacts.size()>0) {
-                db.dbDeleteContact(contacts.get(0));
+                db.dbDeleteContact(contacts.get(contacts.size()-1));
                 contacts = db.dbGetAllContacts();
 
             }
