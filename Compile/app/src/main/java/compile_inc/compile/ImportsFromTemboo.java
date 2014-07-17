@@ -4,9 +4,24 @@ package compile_inc.compile;
  * Created by DUCA on 7/15/2014.
  */
 public class ImportsFromTemboo {
+//Get keys and such from cloudmine
+    ObjectGet objectGetChoreo = new ObjectGet(session);
+
+    // Get an InputSet object for the choreo
+    ObjectGetInputSet objectGetInputs = objectGetChoreo.newInputSet();
+
+// Set inputs
+    objectGetInputs.set_APIKey("");
+    objectGetInputs.set_ApplicationIdentifier("");
+
+    // Execute Choreo
+    ObjectGetResultSet objectGetResults = objectGetChoreo.execute(objectGetInputs);
+
+//below enter all keys and such that we will need
     string twitterKey;
     string twitterSecret;
-    //twitter
+
+//twitter
     InitializeOAuth initializeOAuthChoreo = new InitializeOAuth(session);
 
     // Get an InputSet object for the choreo
@@ -80,4 +95,77 @@ public class ImportsFromTemboo {
 //can also get profile image from response
 //Twitter
 
+//Facebook
+//initialize OAuth
+InitializeOAuth initializeOAuthChoreo = new InitializeOAuth(session);
+
+    // Get an InputSet object for the choreo
+    InitializeOAuthInputSet initializeOAuthInputs = initializeOAuthChoreo.newInputSet();
+
+// Set inputs
+    initializeOAuthInputs.set_AppID("");
+
+    // Execute Choreo
+    InitializeOAuthResultSet initializeOAuthResults = initializeOAuthChoreo.execute(initializeOAuthInputs);
+//We get the authorization URL for the user and callback id for finalizing OAuth
+
+//FinalizeOAuth
+    FinalizeOAuth finalizeOAuthChoreo = new FinalizeOAuth(session);
+
+    // Get an InputSet object for the choreo
+    FinalizeOAuthInputSet finalizeOAuthInputs = finalizeOAuthChoreo.newInputSet();
+
+// Set inputs
+//Get this from cloudmine
+    finalizeOAuthInputs.set_CallbackID("");
+    finalizeOAuthInputs.set_AppSecret("");
+    finalizeOAuthInputs.set_AppID("");
+
+    // Execute Choreo
+    FinalizeOAuthResultSet finalizeOAuthResults = finalizeOAuthChoreo.execute(finalizeOAuthInputs);
+
+//get friends list
+Friends friendsChoreo = new Friends(session);
+
+    // Get an InputSet object for the choreo
+    FriendsInputSet friendsInputs = friendsChoreo.newInputSet();
+
+// Set inputs
+    friendsInputs.set_AccessToken("");
+
+    // Execute Choreo
+    FriendsResultSet friendsResults = friendsChoreo.execute(friendsInputs);
+//friends list is in JSon we can extract names + ids to put in an array fro later and match with contacts
+
+//get latest Facebook status
+//probably should loop this  through array of profile ids that maybe was made
+    Statuses statusesChoreo = new Statuses(session);
+
+    // Get an InputSet object for the choreo
+    StatusesInputSet statusesInputs = statusesChoreo.newInputSet();
+
+// Set inputs
+    statusesInputs.set_AccessToken("");
+    //profile id from profile ids that was maybe made
+    statusesInputs.set_ProfileID("");
+    //1 for only the latest status we get 1 result
+    statusesInputs.set_Limit("1");
+
+    // Execute Choreo
+    StatusesResultSet statusesResults = statusesChoreo.execute(statusesInputs);
+//we get statuses for  those in the array of ids that was maybe made
+
+//Google stuff
+    //insert OAuth here
+//get all google contacts
+    GetAllContacts getAllContactsChoreo = new GetAllContacts(session);
+
+    // Get an InputSet object for the choreo
+    GetAllContactsInputSet getAllContactsInputs = getAllContactsChoreo.newInputSet();
+
+// Set inputs
+    getAllContactsInputs.set_ClientID("");
+
+    // Execute Choreo
+    GetAllContactsResultSet getAllContactsResults = getAllContactsChoreo.execute(getAllContactsInputs);
 }

@@ -21,6 +21,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="compile_inc.compile.MainActivity" />
         </activity>
+        <uses-permission android:name="android.permission.INTERNET"/>
     </application>
 
 </manifest>
