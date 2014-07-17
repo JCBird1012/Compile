@@ -44,6 +44,9 @@ public class MainActivity extends Activity {
         this.card_list.setAdapter(this.adapter);
         Log.d("Adapter:  ","it should have run");
 
+        //Contact testContact = db.dbGetContact(2);
+        //Log.d("testContact ID: ", String.valueOf(testContact.getId()));
+        //db.dbDeleteContact(testContact);
         //testFunction();
         //idk what max is doing here, but he should put in comments so that his team can understand
         getAndroidContacts();
