@@ -49,6 +49,8 @@
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView4"/>
+        android:id="@+id/textView4"
+        android:onClick="onClick"
+        android:clickable="true"/>
 
 </RelativeLayout>

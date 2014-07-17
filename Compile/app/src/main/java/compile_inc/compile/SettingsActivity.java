@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import java.util.List;
+
 import compile_inc.compile.R;
 
 public class SettingsActivity extends Activity {
@@ -14,6 +18,16 @@ public class SettingsActivity extends Activity {
         setContentView(R.layout.activity_settings);
 
 
+    }
+
+    public void onClick(View v) {
+        List<Contact> contacts = MainActivity.db.dbGetAllContacts();
+        while(contacts.size()>0) { //starts at the bottom of the database and works up,
+            // deleting everything while not changing any of their id's in the process. (efficient)
+            MainActivity.db.dbDeleteContact(contacts.get(contacts.size()-1));
+            contacts = MainActivity.db.dbGetAllContacts();
+        }
+        onResume();
     }
 
 
