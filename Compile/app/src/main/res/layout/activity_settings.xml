@@ -33,14 +33,16 @@
         android:layout_alignParentStart="true"
         android:id="@+id/textView2"/>
     <TextView
-        android:text="@string/hello_world"
+        android:text="@string/settings_pull_contacts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView3"/>
+        android:id="@+id/textView3"
+        android:clickable="true"
+        android:onClick="onClickPullContacts"/>
     <TextView
         android:text="@string/settings_delete_all"
         android:layout_width="match_parent"
@@ -50,7 +52,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textView4"
-        android:onClick="onClick"
+        android:onClick="onClickDeleteAll"
         android:clickable="true"/>
 
 </RelativeLayout>

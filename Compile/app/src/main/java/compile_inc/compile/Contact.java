@@ -3,6 +3,13 @@ package compile_inc.compile;
 /**
  * Created by DUCA on 7/15/2014.
  */
+
+//To create a new object of type Contact, use the constructor i.e.
+//        Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
+//                "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
+//        db.dbAddContact(testContact);
+
+// Contact()
 public class Contact{
     String firstName;
     String lastName;

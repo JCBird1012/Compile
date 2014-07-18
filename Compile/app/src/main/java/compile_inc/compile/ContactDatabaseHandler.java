@@ -12,6 +12,11 @@ import java.util.List;
 /**
  * Created by DUCA on 7/15/2014.
  */
+
+//Ways to use the local database of contacts
+//  from another class or activity, to input a new contact, use the function db.dbCreateContact(contact);
+
+
 public class ContactDatabaseHandler extends SQLiteOpenHelper {
     //static variables
     private static final int DATABASE_VERSION = 1;
