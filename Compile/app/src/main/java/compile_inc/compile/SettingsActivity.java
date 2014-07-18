@@ -49,6 +49,8 @@ public class SettingsActivity extends Activity {
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -98,7 +100,7 @@ public class SettingsActivity extends Activity {
                     String name = cursor.getString(cursor.getColumnIndex( DISPLAY_NAME ));
 
                     //debugging
-                    Log.d("pulling from contacts: ", "working ..");
+                    Log.d("Pulling from contacts: ", "Working ..");
                     int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex( HAS_PHONE_NUMBER )));
                     if (hasPhoneNumber > 0) {
 
