@@ -27,12 +27,10 @@ public class CardAdapter extends BaseAdapter {
         this.activity = activity;
         this.contacts = contacts;
         this.inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        Log.d("cardadapter constructor:  ", "running ...");
     }
 
     @Override
     public int getCount() {
-        Log.d("Count:", Integer.toString(this.contacts.size()));
         return this.contacts.size();
     }
 
@@ -43,8 +41,6 @@ public class CardAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        Log.d("id", Integer.toString(this.contacts.get(i).getId()));
-        Log.d("i: ",Integer.toString(i));
         //return this.contacts.get(i).getId();
         return i;
     }

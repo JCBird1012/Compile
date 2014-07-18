@@ -5,7 +5,7 @@
               android:padding="17dp"
               android:layout_width="fill_parent"
               android:layout_height="match_parent"
-              android:background="#FFFFFF">
+              android:background="@drawable/card_background">
     <TextView
         android:id="@+id/card_first_name"
         android:layout_width="wrap_content"

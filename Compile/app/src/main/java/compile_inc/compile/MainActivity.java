@@ -42,8 +42,9 @@ public class MainActivity extends Activity {
 //        db.dbAddContact(testContact);
 
         List<Contact> fullContacts =  db.dbGetAllContacts();
+        ArrayList<Contact> revisedContacts = listToValid(fullContacts);
         this.card_list = (ListView) findViewById(R.id.listView);
-        this.adapter = new CardAdapter(this, (ArrayList) fullContacts);
+        this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
         this.card_list.setAdapter(this.adapter);
         Log.d("Adapter:  ","it should have run");
 
@@ -55,8 +56,9 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         List<Contact> fullContacts =  db.dbGetAllContacts();
+        ArrayList<Contact> revisedContacts = listToValid(fullContacts);
         this.card_list = (ListView) findViewById(R.id.listView);
-        this.adapter = new CardAdapter(this, (ArrayList) fullContacts);
+        this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
         this.card_list.setAdapter(this.adapter);
 
         //testFunction();
@@ -104,6 +106,24 @@ public class MainActivity extends Activity {
 //        }
     }
 
+    public boolean contactHasEmail(Contact contact) {
+        if (contact.getEmail()!=null) {
+            return true;
+        }
+        return false;
+    }
+    //checks to see whether all of the Contacts in a given List are valid/have email addresses
+    // attached.
+    public ArrayList<Contact> listToValid(List<Contact> contacts) {
+        ArrayList<Contact> newContacts = new ArrayList<Contact>();
+        for(int i = 0; i < contacts.size(); i++) {
+            if(contactHasEmail(contacts.get(i)))//finish
+            newContacts.add(contacts.get(i));
+        }
+        Log.d("oldContactsSize:  ", String.valueOf(contacts.size()));
+        Log.d("newContactsSize:  ", String.valueOf(newContacts.size()));
+        return newContacts;
+    }
 
 
 
