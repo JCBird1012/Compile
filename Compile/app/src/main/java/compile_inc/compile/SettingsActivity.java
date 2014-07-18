@@ -94,13 +94,14 @@ public class SettingsActivity extends Activity {
 
                 while (cursor.moveToNext()) {
                     Contact newContact = new Contact();
+                    int isEmail = 0;
                     String contact_id = cursor.getString(cursor.getColumnIndex( _ID ));
                     String name = cursor.getString(cursor.getColumnIndex( DISPLAY_NAME ));
                     //String spliced[] = name.split("\\s");
                     //newContact.setFirstName(spliced[0]);
                     //newContact.setLastName(spliced[1]);
-                    newContact.setFirstName(name);
-                    MainActivity.db.dbAddContact(newContact);
+                    //newContact.setFirstName(name);
+
                     Log.d("pulling from contacts: ", "working ..");
                     int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex( HAS_PHONE_NUMBER )));
                     if (hasPhoneNumber > 0) {
@@ -116,10 +117,19 @@ public class SettingsActivity extends Activity {
                         Cursor emailCursor = contentResolver.query(EmailCONTENT_URI,    null, EmailCONTACT_ID+ " = ?", new String[] { contact_id }, null);
                         while (emailCursor.moveToNext()) {
                             email = emailCursor.getString(emailCursor.getColumnIndex(DATA));
+
                         }
+
                         emailCursor.close();
                     }
+                    newContact.setEmail(email);
+                    newContact.setPhone_num(phoneNumber);
+                    newContact.setFirstName(name);
+                    if (email != null) {
+                        MainActivity.db.dbAddContact(newContact);
+                    }
                 }
+
             }
         }
     }
