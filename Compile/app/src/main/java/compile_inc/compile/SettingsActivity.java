@@ -94,14 +94,10 @@ public class SettingsActivity extends Activity {
 
                 while (cursor.moveToNext()) {
                     Contact newContact = new Contact();
-                    int isEmail = 0;
                     String contact_id = cursor.getString(cursor.getColumnIndex( _ID ));
                     String name = cursor.getString(cursor.getColumnIndex( DISPLAY_NAME ));
-                    //String spliced[] = name.split("\\s");
-                    //newContact.setFirstName(spliced[0]);
-                    //newContact.setLastName(spliced[1]);
-                    //newContact.setFirstName(name);
 
+                    //debugging
                     Log.d("pulling from contacts: ", "working ..");
                     int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex( HAS_PHONE_NUMBER )));
                     if (hasPhoneNumber > 0) {
@@ -122,9 +118,11 @@ public class SettingsActivity extends Activity {
 
                         emailCursor.close();
                     }
-
+                    //sends phone number to the Contact object
                     newContact.setPhone_num(phoneNumber);
                     String spliced[] = name.split("\\s");
+                    //checks for an "@" symbol in the first name of the contact pulled from the
+                    // local phone contacts to see whether it is actually an email address.
                     if(spliced[0].indexOf("\u0040") !=-1){
                         newContact.setFirstName("unknown contact information");
                         email = spliced[0];
@@ -132,19 +130,22 @@ public class SettingsActivity extends Activity {
                         newContact.setFirstName(spliced[0]);
                     }
 
-
+                    //checks to see whether there is or is not a last name placed in the name
+                    // category
                     if(spliced.length > 1 ) {
                         newContact.setLastName(spliced[1]);
                     }
 
-
-                    //newContact.setFirstName(name);
+                    //sets the email in the local contact app to the contact object
                     newContact.setEmail(email);
                     if (email != null) {
+                        // sends the newly created object to the local contact database only if
+                        // there is a valid email entered for that contact ---TODO implement
+                        // facebook syncing with these email addresses to pull first and last
+                        // names into the application.
                         MainActivity.db.dbAddContact(newContact);
                     }
                 }
-
             }
         }
     }

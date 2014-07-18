@@ -19,7 +19,8 @@ import android.provider.ContactsContract;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// --- TODO create a List of valid contacts i.e. contacts with email addresses as well as first
+// and last names
 public class MainActivity extends Activity {
 
     //declares the database
