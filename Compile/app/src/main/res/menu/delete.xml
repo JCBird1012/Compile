@@ -1,9 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".delete_all" >
-    <item android:id="@+id/action_delete_all"
-        android:title="Delete All"
-        android:showAsAction="always"
-        android:icon="@drawable/ic_action_delete"/>
-
-</menu>

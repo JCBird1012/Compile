@@ -164,7 +164,6 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.delete, menu);
         getMenuInflater().inflate(R.menu.settings, menu);
         getMenuInflater().inflate(R.menu.add_contact, menu);
         return true;
@@ -180,16 +179,7 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(this, NewContactActivity.class);
             startActivity(intent);
         }
-        if (id == R.id.action_delete_all) { //deletes all contact info from the database
-            List<Contact> contacts = db.dbGetAllContacts();
-            while(contacts.size()>0) { //starts at the bottom of the database and works up,
-            // deleting everything while not changing any of their id's in the process. (efficient)
-                db.dbDeleteContact(contacts.get(contacts.size()-1));
-                contacts = db.dbGetAllContacts();
 
-            }
-            onResume();
-        }
         if (id == R.id.action_settings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
