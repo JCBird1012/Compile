@@ -122,9 +122,24 @@ public class SettingsActivity extends Activity {
 
                         emailCursor.close();
                     }
-                    newContact.setEmail(email);
+
                     newContact.setPhone_num(phoneNumber);
-                    newContact.setFirstName(name);
+                    String spliced[] = name.split("\\s");
+                    if(spliced[0].indexOf("\u0040") !=-1){
+                        newContact.setFirstName("unknown contact information");
+                        email = spliced[0];
+                    }   else {
+                        newContact.setFirstName(spliced[0]);
+                    }
+
+
+                    if(spliced.length > 1 ) {
+                        newContact.setLastName(spliced[1]);
+                    }
+
+
+                    //newContact.setFirstName(name);
+                    newContact.setEmail(email);
                     if (email != null) {
                         MainActivity.db.dbAddContact(newContact);
                     }
