@@ -138,7 +138,8 @@ public class SettingsActivity extends Activity {
 
                     //sets the email in the local contact app to the contact object
                     newContact.setEmail(email);
-                    if (email != null) {
+                    Log.d("new Contact email:  ", email);
+                    if (email != "") {
                         // sends the newly created object to the local contact database only if
                         // there is a valid email entered for that contact ---TODO implement
                         // facebook syncing with these email addresses to pull first and last
