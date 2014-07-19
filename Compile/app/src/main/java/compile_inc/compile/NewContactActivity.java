@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
 import com.andreabaccega.widget.FormEditText;
@@ -18,6 +19,11 @@ public class NewContactActivity extends Activity {
         setContentView(R.layout.activity_new_contact);
     }
 
+    public void onClickProfilePicture(View v) {
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, 1);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -32,6 +38,7 @@ public class NewContactActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         if (id == R.id.action_add_contact) {
             FormEditText firstName = (FormEditText)this.findViewById(R.id.new_contactFirstName);
             FormEditText lastName = (FormEditText)this.findViewById(R.id.new_contactLastName);

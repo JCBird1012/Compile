@@ -18,6 +18,7 @@
         android:src="@drawable/ic_launcher"
         app:border_width="1dp"
         app:border_color="#FF000000"
+        android:onClick="onClickProfilePicture"
         android:layout_alignTop="@+id/new_contactFirstName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
