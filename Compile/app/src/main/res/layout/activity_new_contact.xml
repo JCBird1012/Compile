@@ -80,7 +80,6 @@
         android:inputType="textPostalAddress|textMultiLine"
         android:hint="@string/new_person_address"
         android:id="@+id/new_contactAddress"
-        android:maxLength="25"
         android:maxLines="4"
         android:layout_below="@+id/new_contactPhone"
         android:layout_alignParentLeft="true"
