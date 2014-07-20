@@ -2,12 +2,14 @@ package compile_inc.compile;
 
 import android.app.Activity;
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -62,7 +64,16 @@ public class CardAdapter extends BaseAdapter {
         lastName.setText(contact.getLastName());
 
 
+
+
+
+
         return vi;
     }
+
+public void expand(View v) {
+    //stuff when card is clicked
+}
+
 }
 
