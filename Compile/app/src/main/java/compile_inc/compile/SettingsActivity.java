@@ -10,10 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import java.util.List;
-
-import compile_inc.compile.R;
 
 public class SettingsActivity extends Activity {
 
@@ -150,6 +147,4 @@ public class SettingsActivity extends Activity {
             }
         }
     }
-
-
 }

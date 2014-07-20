@@ -11,12 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-
-/**
- * Created by DUCA on 7/16/2014.
- */
 
 //this is class will add stuff to the cards in our card layout --- TODO make it work... ---
 public class CardAdapter extends BaseAdapter {
@@ -30,23 +25,19 @@ public class CardAdapter extends BaseAdapter {
         this.contacts = contacts;
         this.inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-
     @Override
     public int getCount() {
         return this.contacts.size();
     }
-
     @Override
     public Object getItem(int i) {
         return this.contacts.get(i);
     }
-
     @Override
     public long getItemId(int i) {
         //return this.contacts.get(i).getId();
         return i;
     }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Log.d("getView:  ","Running ...");
@@ -62,18 +53,11 @@ public class CardAdapter extends BaseAdapter {
 
         firstName.setText(contact.getFirstName());
         lastName.setText(contact.getLastName());
-
-
-
-
-
-
         return vi;
     }
 
 public void expand(View v) {
     //stuff when card is clicked
 }
-
 }
 

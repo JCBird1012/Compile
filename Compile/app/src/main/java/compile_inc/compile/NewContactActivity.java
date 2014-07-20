@@ -11,14 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-
-
 import com.andreabaccega.widget.FormEditText;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewContactActivity extends Activity {
@@ -28,14 +23,12 @@ public class NewContactActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_contact);
     }
-
     public void onClickProfilePicture(View v) {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, 1);
     }
     private final int SELECT_PHOTO = 1;
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
@@ -61,7 +54,6 @@ public class NewContactActivity extends Activity {
         getMenuInflater().inflate(R.menu.action_add_contact, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -98,7 +90,6 @@ public class NewContactActivity extends Activity {
             {
               phoneTest = phone.testValidity();
             }
-
             if (firstNameTest && emailTest && lastNameTest && phoneTest)
             {
                 Intent intent = new Intent(this, MainActivity.class);
@@ -118,9 +109,6 @@ public class NewContactActivity extends Activity {
                 Contact newContact = new Contact(_firstName, _lastName, _email, _address, _phone);
                 MainActivity.db.dbAddContact(newContact);
             }
-
-
-
          }
         return super.onOptionsItemSelected(item);
     }
