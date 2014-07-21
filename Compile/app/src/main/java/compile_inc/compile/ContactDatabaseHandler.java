@@ -121,7 +121,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
         String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
+        //cursor.close();
 
         //returns the count of contacts
         return cursor.getCount();

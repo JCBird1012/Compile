@@ -7,13 +7,16 @@
               android:layout_height="match_parent"
               android:background="@drawable/card_background"
               android:animateLayoutChanges="true">
+
+    
     <TextView
         android:id="@+id/card_first_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:paddingRight="2dp"/>
+        android:paddingRight="2dp"
+        android:animateLayoutChanges="true"/>
     <TextView
         android:id="@+id/card_last_name"
         android:layout_width="wrap_content"
@@ -21,7 +24,8 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:paddingLeft="2dp"
-        android:layout_toRightOf="@id/card_first_name"/>
+        android:layout_toRightOf="@id/card_first_name"
+        android:animateLayoutChanges="true"/>
 
     <TextView
         android:id="@+id/card_extra_text"

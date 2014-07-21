@@ -1,6 +1,7 @@
 package compile_inc.compile;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,11 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import com.andreabaccega.widget.FormEditText;
+
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewContactActivity extends Activity {
+
+    private Contact newContact;
+    private Bitmap newImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,7 @@ public class NewContactActivity extends Activity {
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         img.setImageBitmap(selectedImage);
+                        newImage = selectedImage;
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
@@ -62,10 +70,10 @@ public class NewContactActivity extends Activity {
         int id = item.getItemId();
 
         if (id == R.id.action_add_contact) {
-            FormEditText firstName = (FormEditText)this.findViewById(R.id.new_contactFirstName);
-            FormEditText lastName = (FormEditText)this.findViewById(R.id.new_contactLastName);
-            FormEditText email = (FormEditText)this.findViewById(R.id.new_contactEmail);
-            FormEditText phone = (FormEditText)this.findViewById(R.id.new_contactPhone);
+            FormEditText firstName = (FormEditText) this.findViewById(R.id.new_contactFirstName);
+            FormEditText lastName = (FormEditText) this.findViewById(R.id.new_contactLastName);
+            FormEditText email = (FormEditText) this.findViewById(R.id.new_contactEmail);
+            FormEditText phone = (FormEditText) this.findViewById(R.id.new_contactPhone);
 
             int lastNameLen = lastName.length();
             int emailLen = email.length();
@@ -75,41 +83,51 @@ public class NewContactActivity extends Activity {
             boolean emailTest = true;
             boolean phoneTest = true;
 
-            if (!firstName.testValidity())
-            {
-              firstNameTest = false;
+            if (!firstName.testValidity()) {
+                firstNameTest = false;
             }
             if (emailLen > 0) {
-              emailTest = email.testValidity();
-              }
-            if(lastNameLen > 0)
-            {
-              lastNameTest = lastName.testValidity();
+                emailTest = email.testValidity();
             }
-            if (phoneLen > 0)
-            {
-              phoneTest = phone.testValidity();
+            if (lastNameLen > 0) {
+                lastNameTest = lastName.testValidity();
             }
-            if (firstNameTest && emailTest && lastNameTest && phoneTest)
-            {
+            if (phoneLen > 0) {
+                phoneTest = phone.testValidity();
+            }
+            if (firstNameTest && emailTest && lastNameTest && phoneTest) {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
 
                 Log.d("Contact_add:  ", "Adding a Contact");
-                EditText text = (EditText)findViewById(R.id.new_contactFirstName);
+                EditText text = (EditText) findViewById(R.id.new_contactFirstName);
                 String _firstName = text.getText().toString();
-                text = (EditText)findViewById(R.id.new_contactLastName);
+                text = (EditText) findViewById(R.id.new_contactLastName);
                 String _lastName = text.getText().toString();
-                text = (EditText)findViewById(R.id.new_contactEmail);
+                text = (EditText) findViewById(R.id.new_contactEmail);
                 String _email = text.getText().toString();
-                text = (EditText)findViewById(R.id.new_contactAddress);
+                text = (EditText) findViewById(R.id.new_contactAddress);
                 String _address = text.getText().toString();
-                text = (EditText)findViewById(R.id.new_contactPhone);
+                text = (EditText) findViewById(R.id.new_contactPhone);
                 String _phone = text.getText().toString();
-                Contact newContact = new Contact(_firstName, _lastName, _email, _address, _phone);
+                newContact = new Contact(_firstName, _lastName, _email, _address, _phone);
                 MainActivity.db.dbAddContact(newContact);
+                int count = MainActivity.db.dbGetContactsCount();
+                Contact testContact = MainActivity.db.dbGetContact(count);
+                int dbID = testContact.getId();
+                Context context = getBaseContext();
+                try {
+                    File dir = context.getDir("photos", Context.MODE_PRIVATE);
+                    File file = new File(dir, String.valueOf(dbID));
+                    FileOutputStream fos = openFileOutput(Integer.toString(dbID), Context.MODE_PRIVATE);
+                    newImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                    fos.close();
+                } catch (Exception FileNotFoundException) {
+
+                }
             }
-         }
+        }
         return super.onOptionsItemSelected(item);
+
     }
 }
