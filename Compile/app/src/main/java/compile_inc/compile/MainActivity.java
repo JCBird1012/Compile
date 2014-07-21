@@ -158,14 +158,7 @@ public class MainActivity extends Activity {
 
         return newContacts;
     }
-
-
-
-
-
-
-
-    @Override
+@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.settings, menu);
@@ -194,10 +187,7 @@ public class MainActivity extends Activity {
 
     }
 
-
-
-
-    //expands/makes smaller a card on click
+//expands/makes smaller a card on click
     public void expandCard(View v, int position) {
         Contact contact = contacts_full.get(position);
         TextView emailAddr = (TextView) v.findViewById(R.id.card_email_addr);
