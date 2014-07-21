@@ -63,7 +63,18 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="1_gson-2.2.4" level="project" />
+    <orderEntry type="library" exported="" name="Google-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="1_Google-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="CloudMine-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="1_CloudMine-2.1.0" level="project" />
     <orderEntry type="library" exported="" name="circleimageview-1.1.1" level="project" />
+    <orderEntry type="library" exported="" name="Twitter-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="1_Twitter-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="JSON-java" level="project" />
+    <orderEntry type="library" exported="" name="temboo-android-sdk-core-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="1_temboo-android-sdk-core-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="Facebook-2.1.0" level="project" />
+    <orderEntry type="library" exported="" name="1_Facebook-2.1.0" level="project" />
   </component>
 </module>
 

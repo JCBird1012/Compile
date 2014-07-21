@@ -25,4 +25,15 @@ dependencies {
     compile files('lib/gson-2.2.4.jar')
     compile 'com.google.code.gson:gson:2.2.+'
     compile 'de.hdodenhof:circleimageview:1.1.1'
+    compile files('libs/temboo-android-sdk-core-2.1.0.jar')
+    compile files('libs/CloudMine-2.1.0.jar')
+    compile files('libs/Facebook-2.1.0.jar')
+    compile files('libs/Google-2.1.0.jar')
+    compile files('libs/Twitter-2.1.0.jar')
+    compile files('libs/Temboo jars/temboo-android-sdk-core-2.1.0.jar')
+    compile files('libs/temboo jars/Google-2.1.0.jar')
+    compile files('libs/temboo jars/Twitter-2.1.0.jar')
+    compile files('libs/temboo jars/Facebook-2.1.0.jar')
+    compile files('libs/temboo jars/CloudMine-2.1.0.jar')
+    compile files('libs/temboo jars/JSON-java.jar')
 }
