@@ -13,7 +13,6 @@
         android:id="@+id/card_img_face"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        app:border_width="1dp"
         android:paddingRight="5dp"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
