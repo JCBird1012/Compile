@@ -67,11 +67,32 @@ public class SettingsActivity extends Activity {
 
     //Adds existing contacts in your people application
     public void onClickPullContacts(View v) {
-        getAndroidContacts();
-
-        onResume();
+        AlertDialog.Builder alertDialogBuilder;
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        // set title
+        alertDialogBuilder.setTitle("Import Contacts?");
+        alertDialogBuilder.setIcon(R.drawable.ic_action_refresh);
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Do you want to import all contacts?")
+                .setCancelable(false)
+                .setPositiveButton("Yes, import.", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Imported all contacts.", Toast.LENGTH_SHORT);
+                        getAndroidContacts();
+                        onResume();
+                        }})
+                .setNegativeButton("No, don't import.", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked, just close
+                        // the dialog box and do nothing
+                    }
+                });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        // show it
+        alertDialog.show();
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
