@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import java.util.List;
 
 public class SettingsActivity extends Activity {
@@ -42,6 +44,8 @@ public class SettingsActivity extends Activity {
                             // deleting everything while not changing any of their id's in the process. (efficient)
                             MainActivity.db.dbDeleteContact(contacts.get(contacts.size() - 1));
                             contacts = MainActivity.db.dbGetAllContacts();
+                            Toast toast = Toast.makeText(getApplicationContext(), "Deleted all contacts.", Toast.LENGTH_SHORT);
+                            toast.show();
                             onResume();
                         }
 
