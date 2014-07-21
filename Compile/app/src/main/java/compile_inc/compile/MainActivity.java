@@ -188,18 +188,19 @@ public class MainActivity extends Activity {
 
     //expands/makes smaller a card on click
     public void expandCard(View v, int position) {
-
+        TextView firstName = (TextView) v.findViewById(R.id.card_first_name);
+        TextView lastName = (TextView) v.findViewById(R.id.card_last_name);
         TextView textChange = (TextView) v.findViewById(R.id.card_extra_text);
         RelativeLayout relLayout = (RelativeLayout) v.findViewById(R.id.card_row);
         Contact contact = contacts_full.get(position + 1);
         if (contact.isSelected() == 1) {
             contact.setSelected(0);
             textChange.setText("");
-            relLayout.setPadding(17, 17, 17, 17);
+            
         } else {
             contact.setSelected(1);
             textChange.setText("Selected!");
-            relLayout.setPadding(17, 50, 17, 50);
+
         }
 
 
