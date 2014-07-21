@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -57,7 +58,7 @@ public class MainActivity extends Activity {
         card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getBaseContext(),String.valueOf(i),Toast.LENGTH_SHORT).show();
+
                 expandCard(view, i);
 
             }
@@ -70,21 +71,21 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        List<Contact> fullContacts =  db.dbGetAllContacts();
-        ArrayList<Contact> revisedContacts = listToValid(fullContacts);
-        this.card_list = (ListView) findViewById(R.id.listView);
-        this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
-        this.card_list.setAdapter(this.adapter);
-        this.card_list = (ListView) findViewById(R.id.listView);
-
-        this.card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getBaseContext(),String.valueOf(i),Toast.LENGTH_SHORT).show();
-                expandCard(view, i);
-
-            }
-        });
+//        List<Contact> fullContacts =  db.dbGetAllContacts();
+//        ArrayList<Contact> revisedContacts = listToValid(fullContacts);
+//        this.card_list = (ListView) findViewById(R.id.listView);
+//        this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
+//        this.card_list.setAdapter(this.adapter);
+//        this.card_list = (ListView) findViewById(R.id.listView);
+//
+//        this.card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//                expandCard(view, i);
+//
+//            }
+//        });
         //testFunction();
     }
 
@@ -188,18 +189,25 @@ public class MainActivity extends Activity {
 
     //expands/makes smaller a card on click
     public void expandCard(View v, int position) {
+        Contact contact = contacts_full.get(position);
+        TextView emailAddr = (TextView) v.findViewById(R.id.card_email_addr);
+        emailAddr.setText(String.valueOf(contact.getEmail()));
+        emailAddr.setPadding(10, 10, 10, 10);
+
         TextView firstName = (TextView) v.findViewById(R.id.card_first_name);
         TextView lastName = (TextView) v.findViewById(R.id.card_last_name);
         TextView textChange = (TextView) v.findViewById(R.id.card_extra_text);
         RelativeLayout relLayout = (RelativeLayout) v.findViewById(R.id.card_row);
-        Contact contact = contacts_full.get(position + 1);
+
+
         if (contact.isSelected() == 1) {
             contact.setSelected(0);
-            textChange.setText("");
-            
+            emailAddr.setVisibility(View.GONE);
+
         } else {
             contact.setSelected(1);
-            textChange.setText("Selected!");
+            emailAddr.setVisibility(View.VISIBLE);
+
 
         }
 
