@@ -188,10 +188,13 @@ public class MainActivity extends Activity {
 
     public void expandCard(View v, int position) {
 
-
+        TextView textChange = (TextView) v.findViewById(R.id.card_extra_text);
         
+        textChange.setText("Clicked!");
         Log.d("onClick",String.valueOf(position));
     }
+
+
 }
 
 
