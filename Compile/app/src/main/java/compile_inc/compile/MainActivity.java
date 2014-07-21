@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.Intent;
 import android.net.Uri;
@@ -32,6 +33,7 @@ public class MainActivity extends Activity {
     protected static ContactDatabaseHandler db;
     private CardAdapter adapter;
     private ListView card_list;
+    private ArrayList<Contact> contacts_full;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,8 @@ public class MainActivity extends Activity {
 //        Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
 //                "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
 //        db.dbAddContact(testContact);
-
-        List<Contact> fullContacts =  db.dbGetAllContacts();
+        contacts_full = (ArrayList<Contact>) db.dbGetAllContacts();
+        List<Contact> fullContacts =  contacts_full;
         ArrayList<Contact> revisedContacts = listToValid(fullContacts);
         this.card_list = (ListView) findViewById(R.id.listView);
         this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
@@ -142,8 +144,7 @@ public class MainActivity extends Activity {
             if(contactHasEmail(contacts.get(i)))//finish
             newContacts.add(contacts.get(i));
         }
-        Log.d("oldContactsSize:  ", String.valueOf(contacts.size()));
-        Log.d("newContactsSize:  ", String.valueOf(newContacts.size()));
+
         return newContacts;
     }
 
@@ -185,15 +186,24 @@ public class MainActivity extends Activity {
 
 
 
-
+    //expands/makes smaller a card on click
     public void expandCard(View v, int position) {
 
         TextView textChange = (TextView) v.findViewById(R.id.card_extra_text);
-        
-        textChange.setText("Clicked!");
-        Log.d("onClick",String.valueOf(position));
-    }
+        RelativeLayout relLayout = (RelativeLayout) v.findViewById(R.id.card_row);
+        Contact contact = contacts_full.get(position + 1);
+        if (contact.isSelected() == 1) {
+            contact.setSelected(0);
+            textChange.setText("");
+            relLayout.setPadding(17, 17, 17, 17);
+        } else {
+            contact.setSelected(1);
+            textChange.setText("Selected!");
+            relLayout.setPadding(17, 50, 17, 50);
+        }
 
+
+    }
 
 }
 

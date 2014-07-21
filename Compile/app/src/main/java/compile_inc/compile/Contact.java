@@ -13,6 +13,7 @@ public class Contact{
     String address;
     String phone_num;
     String description;
+    int isSelected = 0;
     int id;
 
     //default constructor
@@ -114,6 +115,14 @@ public class Contact{
     //gets the description
     public String getDescription() {
         return this.description;
+    }
+
+    public int isSelected() {
+        return this.isSelected;
+    }
+
+    public void setSelected(int x) {
+        this.isSelected = x;
     }
 
 }

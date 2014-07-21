@@ -5,7 +5,8 @@
               android:padding="17dp"
               android:layout_width="fill_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/card_background">
+              android:background="@drawable/card_background"
+              android:animateLayoutChanges="true">
     <TextView
         android:id="@+id/card_first_name"
         android:layout_width="wrap_content"
@@ -29,6 +30,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:paddingLeft="2dp"
-        android:layout_toRightOf="@id/card_last_name"/>
+        android:layout_toRightOf="@id/card_last_name"
+        android:animateLayoutChanges="true"/>
 
 </RelativeLayout>
