@@ -52,7 +52,6 @@ public class NewContactActivity extends Activity {
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-
                 }
         }
     }
