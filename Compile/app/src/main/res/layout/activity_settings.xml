@@ -9,43 +9,10 @@
     tools:context="compile_inc.compile.SettingsActivity">
 
     <TextView
-        android:text="@string/hello_world"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:background="@drawable/card_background"
-        android:id="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentStart="true" />
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:layout_below="@+id/textView"
-        android:background="@drawable/card_background"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView1"/>
-    <TextView
-        android:text="@string/hello_world"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:layout_below="@+id/textView1"
-        android:background="@drawable/card_background"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView2"/>
-    <TextView
         android:text="@string/settings_pull_contacts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:background="@drawable/card_background"
         android:layout_alignParentStart="true"
