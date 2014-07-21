@@ -8,30 +8,54 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="compile_inc.compile.SettingsActivity">
 
-    <TextView
-        android:text="@string/settings_pull_contacts"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/pullContacts"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:layout_alignParentLeft="true"
         android:background="@drawable/card_background"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView3"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
-        android:onClick="onClickPullContacts"/>
-    <TextView
-        android:text="@string/settings_delete_all"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/card_background"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/textView4"
-        android:onClick="onClickDeleteAll"
-        android:clickable="true"/>
+        android:layout_marginBottom="10dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pullContactImage"
+            android:layout_centerVertical="true"
+            android:src = "@drawable/ic_action_delete"/>
+
+            <TextView
+            android:text="@string/settings_pull_contacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:clickable="true"
+            android:layout_toRightOf="@+id/pullContactImage"
+            android:onClick="onClickPullContacts"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_background"
+        android:layout_below="@+id/pullContacts"
+        android:id="@+id/deleteContacts"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deleteContactImage"
+            android:layout_centerVertical="true"
+            android:src = "@drawable/ic_action_delete"/>
+
+        <TextView
+            android:text="@string/settings_delete_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:id="@+id/deleteContactsText"
+            android:onClick="onClickDeleteAll"
+            android:layout_toRightOf="@+id/deleteContactImage"
+            android:clickable="true"/>
+    </RelativeLayout>
 </RelativeLayout>
