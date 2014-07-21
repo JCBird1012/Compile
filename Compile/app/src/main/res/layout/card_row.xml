@@ -18,50 +18,47 @@
         android:paddingTop="5dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:visibility="gone"/>
-    <TextView
-        android:id="@+id/card_first_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:paddingTop="15dp"
-        android:paddingBottom="10dp"
-        android:paddingRight="2dp"
-        android:paddingLeft="5dp"
-        android:animateLayoutChanges="true"
-        android:layout_toRightOf="@id/card_img_face"
-        android:textSize="18sp"/>
-    <TextView
-        android:id="@+id/card_last_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:paddingTop="15dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="2dp"
-        android:layout_toRightOf="@id/card_first_name"
-        android:animateLayoutChanges="true"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/card_extra_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="2dp"
-        android:layout_toRightOf="@id/card_last_name"
+        android:visibility="gone"
         android:animateLayoutChanges="true"/>
+    <RelativeLayout
+        android:id="@+id/card_names"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/card_img_face"
+        android:animateLayoutChanges="true">
+        <TextView
+            android:id="@+id/card_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="2dp"
+            android:paddingLeft="5dp"
+            android:animateLayoutChanges="true"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/card_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="2dp"
+            android:layout_toRightOf="@id/card_first_name"
+            android:animateLayoutChanges="true"
+            android:textSize="18sp"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/card_email_addr"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:paddingTop="0dp"
         android:paddingBottom="10dp"
         android:paddingLeft="0dp"
         android:animateLayoutChanges="true"
-        android:layout_below="@id/card_first_name"
+        android:layout_below="@id/card_names"
         android:gravity="center_horizontal"
         android:visibility="gone"/>
 

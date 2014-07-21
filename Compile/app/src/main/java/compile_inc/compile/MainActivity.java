@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -196,17 +197,21 @@ public class MainActivity extends Activity {
         CircleImageView cardImg = (CircleImageView) v.findViewById(R.id.card_img_face);
         TextView firstName = (TextView) v.findViewById(R.id.card_first_name);
         TextView lastName = (TextView) v.findViewById(R.id.card_last_name);
-        TextView textChange = (TextView) v.findViewById(R.id.card_extra_text);
         RelativeLayout relLayout = (RelativeLayout) v.findViewById(R.id.card_row);
+        RelativeLayout cardNames = (RelativeLayout) v.findViewById(R.id.card_names);
         //define layout parameters for the face-image.
         RelativeLayout.LayoutParams img_p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams
                 .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //define layout params for the relative layout containing both the first and last names
+        RelativeLayout.LayoutParams cardNames_p = new RelativeLayout.LayoutParams(ViewGroup
+                .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         //define layout params for first name
         RelativeLayout.LayoutParams firstName_p = new RelativeLayout.LayoutParams(ViewGroup
                 .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        //define  layout params for last name
+        //define layout params for last name
         RelativeLayout.LayoutParams lastName_p = new RelativeLayout.LayoutParams(ViewGroup
                 .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        View view = findViewById(R.id.main_layout);
         if (contact.isSelected() == 1) {
             contact.setSelected(0);
             emailAddr.setVisibility(View.GONE);
@@ -214,26 +219,25 @@ public class MainActivity extends Activity {
             img_p.height = 110;
             img_p.width = 110;
             cardImg.setLayoutParams(img_p);
-            firstName_p.addRule(RelativeLayout.ALIGN_LEFT);
-            firstName_p.addRule(RelativeLayout.RIGHT_OF, cardImg.getId());
-            firstName.setLayoutParams(firstName_p);
-            lastName_p.addRule(RelativeLayout.ALIGN_LEFT);
-            lastName_p.addRule(RelativeLayout.RIGHT_OF, firstName.getId());
-            lastName.setLayoutParams(lastName_p);
+            cardNames_p.addRule(RelativeLayout.ALIGN_LEFT);
+            cardNames_p.addRule(RelativeLayout.RIGHT_OF, cardImg.getId());
+            cardNames.setLayoutParams(cardNames_p);
+            firstName.setTextSize(18);
+            lastName.setTextSize(18);
         } else {
+
             contact.setSelected(1);
             emailAddr.setVisibility(View.VISIBLE);
             img_p.addRule(RelativeLayout.CENTER_HORIZONTAL);
             img_p.height = 200;
             img_p.width = 200;
             cardImg.setLayoutParams(img_p);
-            firstName_p.addRule(RelativeLayout.BELOW, cardImg.getId());
-            firstName_p.addRule(RelativeLayout.CENTER_HORIZONTAL);
-            firstName.setLayoutParams(firstName_p);
-            lastName_p.addRule(RelativeLayout.CENTER_HORIZONTAL);
-            lastName_p.addRule(RelativeLayout.BELOW, cardImg.getId());
-            lastName_p.addRule(RelativeLayout.RIGHT_OF, firstName.getId());
-            lastName.setLayoutParams(lastName_p);
+            cardNames_p.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            cardNames_p.addRule(RelativeLayout.BELOW, cardImg.getId());
+            cardNames.setLayoutParams(cardNames_p);
+            firstName.setTextSize(25);
+            lastName.setTextSize(25);
+
         }
 
 
