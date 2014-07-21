@@ -1,7 +1,9 @@
 package compile_inc.compile;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,14 +24,42 @@ public class SettingsActivity extends Activity {
 
     //Deletes all of the contacts in the database.
     public void onClickDeleteAll(View v) {
-        List<Contact> contacts = MainActivity.db.dbGetAllContacts();
-        while(contacts.size()>0) { //starts at the bottom of the database and works up,
-            // deleting everything while not changing any of their id's in the process. (efficient)
-            MainActivity.db.dbDeleteContact(contacts.get(contacts.size()-1));
-            contacts = MainActivity.db.dbGetAllContacts();
-        }
-        onResume();
+        AlertDialog.Builder alertDialogBuilder;
+        alertDialogBuilder = new AlertDialog.Builder(this);
+
+        // set title
+        alertDialogBuilder.setTitle("Delete Contacts?");
+        alertDialogBuilder.setIcon(R.drawable.ic_action_delete);
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Are you sure you want to delete all contacts?")
+                .setCancelable(false)
+                .setPositiveButton("Yes, delete all.", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        List<Contact> contacts = MainActivity.db.dbGetAllContacts();
+                        while (contacts.size() > 0) { //starts at the bottom of the database and works up,
+                            // deleting everything while not changing any of their id's in the process. (efficient)
+                            MainActivity.db.dbDeleteContact(contacts.get(contacts.size() - 1));
+                            contacts = MainActivity.db.dbGetAllContacts();
+                            onResume();
+                        }
+
+                    }
+                })
+                .setNegativeButton("No, don't delete.", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // if this button is clicked, just close
+                        // the dialog box and do nothing
+                    }
+                });
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        // show it
+        alertDialog.show();
     }
+
+
 
     //Adds existing contacts in your people application
     public void onClickPullContacts(View v) {
@@ -50,9 +80,7 @@ public class SettingsActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
         return super.onOptionsItemSelected(item);
     }
 
