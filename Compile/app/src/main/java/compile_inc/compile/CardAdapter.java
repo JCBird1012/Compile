@@ -57,7 +57,7 @@ public class CardAdapter extends BaseAdapter {
     }
 
 public void expand(View v) {
-    //stuff when card is clicked
+    Log.d("onClick","");
 }
 }
 

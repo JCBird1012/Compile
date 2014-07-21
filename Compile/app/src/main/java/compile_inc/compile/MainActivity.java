@@ -9,11 +9,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
+import android.view.View.OnClickListener;
+import android.view.View;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -46,7 +51,15 @@ public class MainActivity extends Activity {
         this.card_list = (ListView) findViewById(R.id.listView);
         this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
         this.card_list.setAdapter(this.adapter);
-        Log.d("Adapter:  ","it should have run");
+
+        card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getBaseContext(),String.valueOf(i),Toast.LENGTH_SHORT).show();
+                expandCard(view, i);
+
+            }
+        });
 
         //idk what max is doing here, but he should put in comments so that his team can understand
 
@@ -60,7 +73,16 @@ public class MainActivity extends Activity {
         this.card_list = (ListView) findViewById(R.id.listView);
         this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
         this.card_list.setAdapter(this.adapter);
+        this.card_list = (ListView) findViewById(R.id.listView);
 
+        this.card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getBaseContext(),String.valueOf(i),Toast.LENGTH_SHORT).show();
+                expandCard(view, i);
+
+            }
+        });
         //testFunction();
     }
 
@@ -158,6 +180,17 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
 
 
+    }
+
+
+
+
+
+    public void expandCard(View v, int position) {
+
+
+        
+        Log.d("onClick",String.valueOf(position));
     }
 }
 
