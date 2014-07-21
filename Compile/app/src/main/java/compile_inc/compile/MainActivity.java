@@ -3,7 +3,10 @@ package compile_inc.compile;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,14 +27,20 @@ import android.view.View;
 import android.widget.Toast;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 // --- TODO create a List of valid contacts i.e. contacts with email addresses as well as first
 // and last names
 public class MainActivity extends Activity {
 
     //declares the database
+
     protected static ContactDatabaseHandler db;
     private CardAdapter adapter;
     private ListView card_list;
@@ -193,7 +203,7 @@ public class MainActivity extends Activity {
         TextView emailAddr = (TextView) v.findViewById(R.id.card_email_addr);
         emailAddr.setText(String.valueOf(contact.getEmail()));
         emailAddr.setPadding(10, 10, 10, 10);
-
+        CircleImageView cardImg = (CircleImageView) v.findViewById(R.id.card_img_face);
         TextView firstName = (TextView) v.findViewById(R.id.card_first_name);
         TextView lastName = (TextView) v.findViewById(R.id.card_last_name);
         TextView textChange = (TextView) v.findViewById(R.id.card_extra_text);

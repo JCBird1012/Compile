@@ -112,13 +112,12 @@ public class NewContactActivity extends Activity {
                 String _phone = text.getText().toString();
                 newContact = new Contact(_firstName, _lastName, _email, _address, _phone);
                 MainActivity.db.dbAddContact(newContact);
+                //saving picture to internal storage
                 int count = MainActivity.db.dbGetContactsCount();
                 Contact testContact = MainActivity.db.dbGetContact(count);
                 int dbID = testContact.getId();
                 Context context = getBaseContext();
                 try {
-                    File dir = context.getDir("photos", Context.MODE_PRIVATE);
-                    File file = new File(dir, String.valueOf(dbID));
                     FileOutputStream fos = openFileOutput(Integer.toString(dbID), Context.MODE_PRIVATE);
                     newImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
                     fos.close();

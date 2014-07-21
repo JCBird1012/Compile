@@ -8,7 +8,18 @@
               android:background="@drawable/card_background"
               android:animateLayoutChanges="true">
 
-    
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_img_face"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:border_width="1dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/card_first_name"
         android:layout_width="wrap_content"
@@ -16,7 +27,8 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:paddingRight="2dp"
-        android:animateLayoutChanges="true"/>
+        android:animateLayoutChanges="true"
+        android:layout_toRightOf="@id/card_img_face"/>
     <TextView
         android:id="@+id/card_last_name"
         android:layout_width="wrap_content"

@@ -1,7 +1,10 @@
 package compile_inc.compile;
 
+import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +14,14 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 //this is class will add stuff to the cards in our card layout --- TODO make it work... ---
 public class CardAdapter extends BaseAdapter {
@@ -53,10 +63,28 @@ public class CardAdapter extends BaseAdapter {
 
         firstName.setText(contact.getFirstName());
         lastName.setText(contact.getLastName());
+        Bitmap image = null;
+        CircleImageView cardImg = (CircleImageView) vi.findViewById(R.id.card_img_face);
+        int dbID = contact.getId();
+        FileInputStream fis;
+        try {
+            fis = activity.openFileInput(Integer.toString(dbID));
+            image = BitmapFactory.decodeStream(fis);
+            fis.close();
+            cardImg.setImageBitmap(image);
+            cardImg.setVisibility(View.VISIBLE);
+        }catch(Exception FileNotFoundException){
+
+        }
+
+
+
         return vi;
     }
 
-public void expand(View v) {
+
+
+    public void expand(View v) {
     Log.d("onClick","");
 }
 }
