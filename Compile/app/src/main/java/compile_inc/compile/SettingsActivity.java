@@ -16,6 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.facebook.model.GraphObjectList;
+import com.facebook.model.GraphUser;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class SettingsActivity extends FragmentActivity {
@@ -208,6 +212,19 @@ public class SettingsActivity extends FragmentActivity {
                         // facebook syncing with these email addresses to pull first and last
                         // names into the application.
                         MainActivity.db.dbAddContact(newContact);
+                    }
+                }
+            }
+        }
+    }
+    public void syncFbFriends(View v) {
+        ArrayList<Contact> contacts = (ArrayList) MainActivity.db.dbGetAllContacts();
+        GraphObjectList<GraphUser> fbFriends = FbLoginFragment.fbObjectList;
+        for(GraphUser usr: fbFriends){
+            for(Contact contData: contacts){
+                if(contData.getFirstName() == usr.getFirstName()){
+                    if(contData.getLastName() == usr.getLastName()){
+                        
                     }
                 }
             }
