@@ -2,13 +2,7 @@ package compile_inc.compile;
 
 
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,21 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.ContactsContract;
-import android.view.View.OnClickListener;
-import android.view.View;
-import android.widget.Toast;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +36,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-
-
         Log.d("Creating: ", "Creating ..");
         // initializes the local database of contacts
         db = new ContactDatabaseHandler(this);
@@ -77,20 +60,24 @@ public class MainActivity extends Activity {
             }
         });
     }
-
     public void welcomeScreen()
     {
 
         if (db.dbGetContactsCount() == 0)
         {
-            View b = findViewById(R.id.textView);
+            View b = findViewById(R.id.welcome);
+            View c = findViewById(R.id.welcome2);
             b.setVisibility(View.VISIBLE);
+            c.setVisibility(View.VISIBLE);
         }
 
         else
         {
-            View b = findViewById(R.id.textView);
+            View b = findViewById(R.id.welcome);
+            View c = findViewById(R.id.welcome2);
             b.setVisibility(View.INVISIBLE);
+            c.setVisibility(View.INVISIBLE);
+
         }
 
     }
@@ -99,8 +86,6 @@ public class MainActivity extends Activity {
         super.onResume();
         welcomeScreen();
     }
-
-
     public boolean contactHasEmail(Contact contact) {
         if (contact.getEmail()!=null) {
             return true;
@@ -125,7 +110,6 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.add_contact, menu);
         return true;
         }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -146,7 +130,6 @@ public class MainActivity extends Activity {
 
 
     }
-
 //expands/makes smaller a card on click
     public void expandCard(View v, int position) {
         Contact contact = contacts_full.get(position);
@@ -198,10 +181,7 @@ public class MainActivity extends Activity {
             lastName.setTextSize(25);
 
         }
-
-
     }
-
 }
 
 
