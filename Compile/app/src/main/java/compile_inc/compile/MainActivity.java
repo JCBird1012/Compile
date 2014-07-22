@@ -41,11 +41,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends Activity {
 
     //declares the database
-
+    private Activity activity = this;
     protected static ContactDatabaseHandler db;
     private CardAdapter adapter;
     private ListView card_list;
     private ArrayList<Contact> contacts_full;
+    private Contact contact_to_delete = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class MainActivity extends Activity {
         List<Contact> fullContacts =  contacts_full;
         ArrayList<Contact> revisedContacts = listToValid(fullContacts);
         this.card_list = (ListView) findViewById(R.id.listView);
-        this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
+        this.adapter = new CardAdapter(this, (ArrayList) contacts_full);
         this.card_list.setAdapter(this.adapter);
 
         card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -82,22 +83,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-//        List<Contact> fullContacts =  db.dbGetAllContacts();
-//        ArrayList<Contact> revisedContacts = listToValid(fullContacts);
-//        this.card_list = (ListView) findViewById(R.id.listView);
-//        this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
-//        this.card_list.setAdapter(this.adapter);
-//        this.card_list = (ListView) findViewById(R.id.listView);
-//
-//        this.card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                expandCard(view, i);
-//
-//            }
-//        });
-        //testFunction();
     }
 
     //A function meant to test the database and other functions ---note,
@@ -199,6 +184,7 @@ public class MainActivity extends Activity {
         TextView lastName = (TextView) v.findViewById(R.id.card_last_name);
         RelativeLayout relLayout = (RelativeLayout) v.findViewById(R.id.card_row);
         RelativeLayout cardNames = (RelativeLayout) v.findViewById(R.id.card_names);
+        ImageView deleteIcon = (ImageView) v.findViewById(R.id.card_delete_icon);
         //define layout parameters for the face-image.
         RelativeLayout.LayoutParams img_p = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams
                 .MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -211,6 +197,9 @@ public class MainActivity extends Activity {
         //define layout params for last name
         RelativeLayout.LayoutParams lastName_p = new RelativeLayout.LayoutParams(ViewGroup
                 .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //define layout params for delete icon
+        RelativeLayout.LayoutParams deleteIcon_p = new RelativeLayout.LayoutParams(ViewGroup
+                .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         View view = findViewById(R.id.main_layout);
         if (contact.isSelected() == 1) {
             contact.setSelected(0);
@@ -222,6 +211,7 @@ public class MainActivity extends Activity {
             cardNames_p.addRule(RelativeLayout.ALIGN_LEFT);
             cardNames_p.addRule(RelativeLayout.RIGHT_OF, cardImg.getId());
             cardNames.setLayoutParams(cardNames_p);
+            deleteIcon.setVisibility(View.GONE);
             firstName.setTextSize(18);
             lastName.setTextSize(18);
         } else {
@@ -235,14 +225,33 @@ public class MainActivity extends Activity {
             cardNames_p.addRule(RelativeLayout.CENTER_HORIZONTAL);
             cardNames_p.addRule(RelativeLayout.BELOW, cardImg.getId());
             cardNames.setLayoutParams(cardNames_p);
+            contact_to_delete = contact;
+            deleteIcon_p.addRule(RelativeLayout.ALIGN_TOP);
+            deleteIcon_p.addRule(RelativeLayout.ALIGN_RIGHT);
+            deleteIcon.setVisibility(View.VISIBLE);
+            deleteIcon.setLayoutParams(deleteIcon_p);
+            deleteIcon.setOnClickListener(deleteContactFunc);
             firstName.setTextSize(25);
             lastName.setTextSize(25);
 
+
         }
 
-
     }
-
+    //deletes a single contact
+    public void deleteSingleContact(Contact contact) {
+        db.dbDeleteContact(contact);
+        contacts_full = (ArrayList<Contact>) db.dbGetAllContacts();
+    }
+    View.OnClickListener deleteContactFunc = new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            deleteSingleContact(contact_to_delete);
+            adapter = new CardAdapter(activity, (ArrayList) contacts_full);
+            card_list.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+    };
 }
 
 
