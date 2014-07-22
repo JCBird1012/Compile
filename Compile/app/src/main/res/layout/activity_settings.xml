@@ -60,12 +60,20 @@
             android:clickable="true"/>
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_background"
+        android:layout_below="@id/deleteContacts"
+        android:id="@+id/authFacebook"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp">
+
     <com.facebook.widget.LoginButton
         android:id="@+id/authButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_below="@id/deleteContacts"
-        />
+
+         />
+        </RelativeLayout>
 </RelativeLayout>

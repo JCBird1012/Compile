@@ -81,6 +81,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        welcomeScreen();
 
     }
     public boolean contactHasEmail(Contact contact) {
