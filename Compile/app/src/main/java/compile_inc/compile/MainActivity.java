@@ -52,6 +52,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+
         Log.d("Creating: ", "Creating ..");
         // initializes the local database of contacts
         db = new ContactDatabaseHandler(this);
@@ -66,6 +67,7 @@ public class MainActivity extends Activity {
         this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
         this.card_list.setAdapter(this.adapter);
 
+
         card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -74,73 +76,30 @@ public class MainActivity extends Activity {
 
             }
         });
-
-        //idk what max is doing here, but he should put in comments so that his team can understand
-
     }
 
+    public void welcomeScreen()
+    {
+
+        if (db.dbGetContactsCount() == 0)
+        {
+            View b = findViewById(R.id.textView);
+            b.setVisibility(View.VISIBLE);
+        }
+
+        else
+        {
+            View b = findViewById(R.id.textView);
+            b.setVisibility(View.INVISIBLE);
+        }
+
+    }
     @Override
     protected void onResume() {
         super.onResume();
-//        List<Contact> fullContacts =  db.dbGetAllContacts();
-//        ArrayList<Contact> revisedContacts = listToValid(fullContacts);
-//        this.card_list = (ListView) findViewById(R.id.listView);
-//        this.adapter = new CardAdapter(this, (ArrayList) revisedContacts);
-//        this.card_list.setAdapter(this.adapter);
-//        this.card_list = (ListView) findViewById(R.id.listView);
-//
-//        this.card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                expandCard(view, i);
-//
-//            }
-//        });
-        //testFunction();
+        welcomeScreen();
     }
 
-    //A function meant to test the database and other functions ---note,
-    // probably doesn't work properly anymore --- TODO remove this
-    // eventually ---
-    public void testFunction(){
-//        Contact testContact = new Contact("John", "Gallagher", "johnjon8@gmail.com",
-//                "2934 Belmont Ave Ardmore PA.", "2672401429", "yo this guy is awesome bro");
-//
-//
-//        Contact testContact2 = new Contact("Max", "Plank", "yo@google.com", "2939 Element St",
-//                "5554443322", "dis guy is cool too!");
-//        // the db.dbAddContact will a contact to the database initialized above if there are
-//        // fewer 2 already in existence!
-//        // (hopefully...)
-//        List<Contact> allContacts = db.dbGetAllContacts();
-//
-//        if(2 > allContacts.size()) {
-//            db.dbAddContact(testContact);
-//            db.dbAddContact(testContact2);
-//        }
-//
-//
-//        Log.d("Retrieving:  ", "Retrieving ..");
-//        Contact retrievedContact = db.dbGetContact(1);
-//        Contact retrievedContact2 = db.dbGetContact(2);
-//
-//        //reads all of the contacts currently in the database
-//        Log.d("Reading: ","Reading all contacts ..");
-//        allContacts = db.dbGetAllContacts();
-//
-//
-//        //prints some contacts for testing purposes
-//        Log.d("Printing:  ", "Printing ..");
-//        Log.d("Number of contacts", String.valueOf(allContacts.size()));
-//        //clears current text
-//        TextView t = (TextView) findViewById(R.id.testText);
-//        t.setText("");
-//        for (int i = 0; i < allContacts.size(); i++) {
-//            testPrintContact(allContacts.get(i));
-//            Log.d("Loop:  ", "Running loop ..");
-//        }
-    }
 
     public boolean contactHasEmail(Contact contact) {
         if (contact.getEmail()!=null) {

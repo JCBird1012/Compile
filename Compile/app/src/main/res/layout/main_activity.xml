@@ -22,4 +22,26 @@
         android:dividerHeight="10.0sp"
         android:clickable="true"
         android:animateLayoutChanges="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="36sp"
+        android:text="@string/welcome"
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/listView"
+        android:layout_marginTop="300dp"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="To begin, add a contact or import contacts from settings."
+        android:id="@+id/textView2"
+        android:layout_alignTop="@+id/listView"
+        android:layout_marginTop="350dp"
+        android:textColor="#8e8e93"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>
