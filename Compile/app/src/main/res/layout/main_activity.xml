@@ -30,7 +30,7 @@
         android:textSize="36sp"
         android:text="@string/welcome"
         android:id="@+id/welcome"
-        android:layout_marginTop="300dp"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
 
     <TextView
