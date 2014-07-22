@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/pullContactImage"
             android:layout_centerVertical="true"
-            android:src = "@drawable/ic_action_delete"/>
+            android:src = "@drawable/ic_action_refresh"/>
 
             <TextView
             android:text="@string/settings_pull_contacts"
