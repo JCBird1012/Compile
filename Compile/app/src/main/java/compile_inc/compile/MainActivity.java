@@ -2,13 +2,7 @@ package compile_inc.compile;
 
 
 import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,16 +15,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.Intent;
-import android.net.Uri;
-import android.provider.ContactsContract;
-import android.view.View.OnClickListener;
-import android.view.View;
-import android.widget.Toast;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +38,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-
         Log.d("Creating: ", "Creating ..");
         // initializes the local database of contacts
         db = new ContactDatabaseHandler(this);
@@ -67,6 +52,7 @@ public class MainActivity extends Activity {
         this.adapter = new CardAdapter(this, (ArrayList) contacts_full);
         this.card_list.setAdapter(this.adapter);
 
+
         card_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -75,14 +61,32 @@ public class MainActivity extends Activity {
 
             }
         });
+    }
+    public void welcomeScreen()
+    {
 
-        //idk what max is doing here, but he should put in comments so that his team can understand
+        if (db.dbGetContactsCount() == 0)
+        {
+            View b = findViewById(R.id.welcome);
+            View c = findViewById(R.id.welcome2);
+            b.setVisibility(View.VISIBLE);
+            c.setVisibility(View.VISIBLE);
+        }
+
+        else
+        {
+            View b = findViewById(R.id.welcome);
+            View c = findViewById(R.id.welcome2);
+            b.setVisibility(View.INVISIBLE);
+            c.setVisibility(View.INVISIBLE);
+
+        }
 
     }
-
     @Override
     protected void onResume() {
         super.onResume();
+
     }
 
     //A function meant to test the database and other functions ---note,
@@ -125,8 +129,10 @@ public class MainActivity extends Activity {
 //            testPrintContact(allContacts.get(i));
 //            Log.d("Loop:  ", "Running loop ..");
 //        }
-    }
 
+        welcomeScreen();
+
+    }
     public boolean contactHasEmail(Contact contact) {
         if (contact.getEmail()!=null) {
             return true;
@@ -151,7 +157,6 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.add_contact, menu);
         return true;
         }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -172,7 +177,6 @@ public class MainActivity extends Activity {
 
 
     }
-
 //expands/makes smaller a card on click
     public void expandCard(View v, int position) {
         Contact contact = contacts_full.get(position);
@@ -235,6 +239,7 @@ public class MainActivity extends Activity {
             lastName.setTextSize(25);
 
 
+
         }
 
     }
@@ -243,7 +248,7 @@ public class MainActivity extends Activity {
         db.dbDeleteContact(contact);
         contacts_full = (ArrayList<Contact>) db.dbGetAllContacts();
     }
-    View.OnClickListener deleteContactFunc = new OnClickListener() {
+    View.OnClickListener deleteContactFunc = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             deleteSingleContact(contact_to_delete);
@@ -252,6 +257,9 @@ public class MainActivity extends Activity {
             adapter.notifyDataSetChanged();
         }
     };
+
 }
+
+
 
 

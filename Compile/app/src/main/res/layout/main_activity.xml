@@ -22,4 +22,25 @@
         android:dividerHeight="10.0sp"
         android:clickable="true"
         android:animateLayoutChanges="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="36sp"
+        android:text="@string/welcome"
+        android:id="@+id/welcome"
+        android:layout_marginTop="300dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/welcome2"
+        android:id="@+id/welcome2"
+        android:layout_below="@+id/welcome"
+        android:textColor="#8e8e93"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>
