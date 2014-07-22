@@ -69,11 +69,28 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp">
 
-    <com.facebook.widget.LoginButton
-        android:id="@+id/authButton"
+        <com.facebook.widget.LoginButton
+            android:id="@+id/authButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+             />
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-         />
+        android:background="@drawable/card_background"
+        android:layout_below="@id/authFacebook"
+        android:id="@+id/fb_sync_layout"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone">
+        <TextView
+            android:text="@string/sync_fb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:id="@+id/fb_sync"
+            android:onClick="syncFbFriends"
+            android:clickable="true"/>
         </RelativeLayout>
 </RelativeLayout>

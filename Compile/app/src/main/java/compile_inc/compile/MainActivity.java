@@ -17,6 +17,14 @@ import android.widget.TextView;
 import android.content.Intent;
 
 
+import com.facebook.HttpMethod;
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.model.GraphObjectList;
+import com.facebook.model.GraphUser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,6 +212,7 @@ public class MainActivity extends Activity {
             adapter.notifyDataSetChanged();
         }
     };
+
 
 }
 

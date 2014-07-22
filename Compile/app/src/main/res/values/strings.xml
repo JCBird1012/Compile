@@ -17,5 +17,6 @@
     <string name="welcome">Welcome to Compile.</string>
     <string name="welcome2">"To begin, add a contact or import contacts in settings."</string>
     <string name="app_id">141600012681824</string>
+    <string name="sync_fb">Sync Facebook Contacts</string>
 
 </resources>
