@@ -31,7 +31,7 @@ public class SettingsActivity extends Activity {
 
         // set title
         alertDialogBuilder.setTitle("Delete Contacts?");
-        alertDialogBuilder.setIcon(R.drawable.ic_action_delete);
+        alertDialogBuilder.setIcon(R.drawable.ic_red_trash);
 
         // set dialog message
         alertDialogBuilder
