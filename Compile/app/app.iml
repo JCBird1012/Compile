@@ -63,9 +63,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="1_gson-2.2.4" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="circleimageview-1.1.1" level="project" />
     <orderEntry type="library" exported="" name="cloudmine-android-v0.6.1" level="project" />
     <orderEntry type="library" exported="" name="android-form-edittext-1.0.5" level="project" />
+    <orderEntry type="module" module-name="facebook" exported="" />
   </component>
 </module>
 

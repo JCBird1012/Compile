@@ -2,12 +2,14 @@ package compile_inc.compile;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,12 +18,25 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class SettingsActivity extends Activity {
-
+public class SettingsActivity extends FragmentActivity {
+    private FbLoginFragment fbFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        if (savedInstanceState == null) {
+            // Add the fragment on initial activity setup
+            fbFragment = new FbLoginFragment();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(android.R.id.content, fbFragment)
+                    .commit();
+        } else {
+            // Or set the fragment from restored state info
+            fbFragment = (FbLoginFragment) getSupportFragmentManager()
+                    .findFragmentById(android.R.id.content);
+        }
     }
 
     //Deletes all of the contacts in the database.

@@ -27,4 +27,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.+'
     compile 'de.hdodenhof:circleimageview:1.1.1'
     compile 'com.andreabaccega:android-form-edittext:1.0.5@aar'
+    compile project(':facebook')
 }

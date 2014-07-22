@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/card_background"
-        android:layout_below="@+id/pullContacts"
+        android:layout_below="@id/pullContacts"
         android:id="@+id/deleteContacts"
         android:layout_marginBottom="10dp">
 
@@ -56,7 +56,15 @@
             android:padding="15dp"
             android:id="@+id/deleteContactsText"
             android:onClick="onClickDeleteAll"
-            android:layout_toRightOf="@+id/deleteContactImage"
+            android:layout_toRightOf="@id/deleteContactImage"
             android:clickable="true"/>
+        <com.facebook.widget.LoginButton
+            android:id="@+id/authButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/deleteContactsText"
+            />
     </RelativeLayout>
 </RelativeLayout>
