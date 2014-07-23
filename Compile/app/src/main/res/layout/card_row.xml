@@ -72,5 +72,16 @@
         android:layout_below="@id/card_names"
         android:gravity="center_horizontal"
         android:visibility="gone"/>
+    <TextView
+        android:id="@+id/card_phone_num"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="0dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="0dp"
+        android:animateLayoutChanges="true"
+        android:layout_below="@id/card_email_addr"
+        android:gravity="center_horizontal"
+        android:visibility="gone"/>
 
 </RelativeLayout>

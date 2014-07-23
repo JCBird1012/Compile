@@ -143,7 +143,9 @@ public class MainActivity extends Activity {
     public void expandCard(View v, int position) {
         Contact contact = contacts_full.get(position);
         TextView emailAddr = (TextView) v.findViewById(R.id.card_email_addr);
+        TextView phoneNum = (TextView) v.findViewById(R.id.card_phone_num);
         emailAddr.setText(String.valueOf(contact.getEmail()));
+        phoneNum.setText(contact.getPhone_num());
         emailAddr.setPadding(10, 10, 10, 10);
         CircleImageView cardImg = (CircleImageView) v.findViewById(R.id.card_img_face);
         TextView firstName = (TextView) v.findViewById(R.id.card_first_name);
@@ -170,6 +172,7 @@ public class MainActivity extends Activity {
         if (contact.isSelected() == 1) {
             contact.setSelected(0);
             emailAddr.setVisibility(View.GONE);
+            phoneNum.setVisibility(View.GONE);
             img_p.addRule(RelativeLayout.ALIGN_LEFT);
             img_p.height = 110;
             img_p.width = 110;
@@ -184,6 +187,7 @@ public class MainActivity extends Activity {
 
             contact.setSelected(1);
             emailAddr.setVisibility(View.VISIBLE);
+            phoneNum.setVisibility(View.VISIBLE);
             img_p.addRule(RelativeLayout.CENTER_HORIZONTAL);
             img_p.height = 200;
             img_p.width = 200;
