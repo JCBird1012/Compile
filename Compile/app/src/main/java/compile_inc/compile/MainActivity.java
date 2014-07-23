@@ -2,6 +2,8 @@ package compile_inc.compile;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +17,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.content.Intent;
+import android.widget.Toast;
 
 
 import com.facebook.HttpMethod;
@@ -206,10 +209,42 @@ public class MainActivity extends Activity {
     View.OnClickListener deleteContactFunc = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            deleteSingleContact(contact_to_delete);
-            adapter = new CardAdapter(activity, (ArrayList) contacts_full);
-            card_list.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+
+            AlertDialog.Builder alertDialogBuilder;
+            alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+
+            // set title
+            alertDialogBuilder.setTitle("Delete Contact?");
+            alertDialogBuilder.setIcon(R.drawable.ic_red_trash);
+
+            // set dialog message
+            alertDialogBuilder
+                    .setMessage("Are you sure you want to delete this contact?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes, delete it.", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            {
+                                deleteSingleContact(contact_to_delete);
+                                adapter = new CardAdapter(activity, (ArrayList) contacts_full);
+                                card_list.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+
+                                Toast toast = Toast.makeText(getApplicationContext(), "Deleted contact.", Toast.LENGTH_SHORT);
+                                toast.show();
+                                onResume();
+                            }
+                        }
+                    })
+                    .setNegativeButton("No, don't delete.", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            onResume();
+                        }
+                    });
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            // show it
+            alertDialog.show();
         }
     };
 
