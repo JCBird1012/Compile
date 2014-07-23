@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.facebook.model.GraphObjectList;
 import com.facebook.model.GraphUser;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,14 +222,20 @@ public class SettingsActivity extends FragmentActivity {
     public void syncFbFriends(View v) {
         ArrayList<Contact> contacts = (ArrayList) MainActivity.db.dbGetAllContacts();
         GraphObjectList<GraphUser> fbFriends = FbLoginFragment.fbObjectList;
+        URL url = null;
         for(GraphUser usr: fbFriends){
             for(Contact contData: contacts){
                 if(contData.getFirstName() == usr.getFirstName()){
-                    if(contData.getLastName() == usr.getLastName()){
-                        
+                    if(contData.getLastName() == usr.getLastName()) {
+//                        try {
+//                            url = new URL("http://graph.facebook.com/" + "");
+//                        } catch (MalformedURLException){
+//
+//                        }
                     }
                 }
             }
         }
     }
+
 }
