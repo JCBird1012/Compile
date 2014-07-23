@@ -12,16 +12,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
 import com.andreabaccega.widget.FormEditText;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewContactActivity extends Activity {
 
+    private final int SELECT_PHOTO = 1;
     private Contact newContact;
     private Bitmap newImage;
 
@@ -30,19 +32,20 @@ public class NewContactActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_contact);
     }
+
     public void onClickProfilePicture(View v) {
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, 1);
     }
-    private final int SELECT_PHOTO = 1;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
-        CircleImageView img = (CircleImageView) findViewById (R.id.profile_image);
-        switch(requestCode) {
+        CircleImageView img = (CircleImageView) findViewById(R.id.profile_image);
+        switch (requestCode) {
             case SELECT_PHOTO:
-                if(resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     try {
                         final Uri imageUri = imageReturnedIntent.getData();
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
@@ -55,12 +58,14 @@ public class NewContactActivity extends Activity {
                 }
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.action_add_contact, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

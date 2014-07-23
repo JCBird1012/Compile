@@ -4,11 +4,11 @@ package compile_inc.compile;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -16,17 +16,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.content.Intent;
 import android.widget.Toast;
-
-
-import com.facebook.HttpMethod;
-import com.facebook.Request;
-import com.facebook.Response;
-import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.model.GraphObjectList;
-import com.facebook.model.GraphUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +27,50 @@ import de.hdodenhof.circleimageview.CircleImageView;
 // and last names
 public class MainActivity extends Activity {
 
+    protected static ContactDatabaseHandler db;
+    View.OnClickListener deleteContactFunc = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+            AlertDialog.Builder alertDialogBuilder;
+            alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+
+            // set title
+            alertDialogBuilder.setTitle("Delete Contact?");
+            alertDialogBuilder.setIcon(R.drawable.ic_red_trash);
+
+            // set dialog message
+            alertDialogBuilder
+                    .setMessage("Are you sure you want to delete this contact?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes, delete it.", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            {
+                                deleteSingleContact(contact_to_delete);
+                                adapter = new CardAdapter(activity, (ArrayList) contacts_full);
+                                card_list.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+
+                                Toast toast = Toast.makeText(getApplicationContext(), "Deleted contact.", Toast.LENGTH_SHORT);
+                                toast.show();
+                                onResume();
+                            }
+                        }
+                    })
+                    .setNegativeButton("No, don't delete.", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            onResume();
+                        }
+                    });
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            // show it
+            alertDialog.show();
+        }
+    };
     //declares the database
     private Activity activity = this;
-    protected static ContactDatabaseHandler db;
     private CardAdapter adapter;
     private ListView card_list;
     private ArrayList<Contact> contacts_full;
@@ -53,7 +84,7 @@ public class MainActivity extends Activity {
         // initializes the local database of contacts
         db = new ContactDatabaseHandler(this);
         contacts_full = (ArrayList<Contact>) db.dbGetAllContacts();
-        List<Contact> fullContacts =  contacts_full;
+        List<Contact> fullContacts = contacts_full;
         ArrayList<Contact> revisedContacts = listToValid(fullContacts);
         this.card_list = (ListView) findViewById(R.id.listView);
         this.adapter = new CardAdapter(this, (ArrayList) contacts_full);
@@ -69,19 +100,15 @@ public class MainActivity extends Activity {
             }
         });
     }
-    public void welcomeScreen()
-    {
 
-        if (db.dbGetContactsCount() == 0)
-        {
+    public void welcomeScreen() {
+
+        if (db.dbGetContactsCount() == 0) {
             View b = findViewById(R.id.welcome);
             View c = findViewById(R.id.welcome2);
             b.setVisibility(View.VISIBLE);
             c.setVisibility(View.VISIBLE);
-        }
-
-        else
-        {
+        } else {
             View b = findViewById(R.id.welcome);
             View c = findViewById(R.id.welcome2);
             b.setVisibility(View.INVISIBLE);
@@ -89,36 +116,41 @@ public class MainActivity extends Activity {
 
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         welcomeScreen();
 
     }
+
     public boolean contactHasEmail(Contact contact) {
-        if (contact.getEmail()!=null) {
+        if (contact.getEmail() != null) {
             return true;
         }
         return false;
     }
+
     //checks to see whether all of the Contacts in a given List are valid/have email addresses
     // attached.
     public ArrayList<Contact> listToValid(List<Contact> contacts) {
         ArrayList<Contact> newContacts = new ArrayList<Contact>();
-        for(int i = 0; i < contacts.size(); i++) {
-            if(contactHasEmail(contacts.get(i)))//finish
-            newContacts.add(contacts.get(i));
+        for (int i = 0; i < contacts.size(); i++) {
+            if (contactHasEmail(contacts.get(i)))//finish
+                newContacts.add(contacts.get(i));
         }
 
         return newContacts;
     }
-@Override
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.settings, menu);
         getMenuInflater().inflate(R.menu.add_contact, menu);
         return true;
-        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -139,7 +171,8 @@ public class MainActivity extends Activity {
 
 
     }
-//expands/makes smaller a card on click
+
+    //expands/makes smaller a card on click
     public void expandCard(View v, int position) {
         Contact contact = contacts_full.get(position);
         TextView emailAddr = (TextView) v.findViewById(R.id.card_email_addr);
@@ -205,52 +238,12 @@ public class MainActivity extends Activity {
             lastName.setTextSize(25);
         }
     }
+
     //deletes a single contact
     public void deleteSingleContact(Contact contact) {
         db.dbDeleteContact(contact);
         contacts_full = (ArrayList<Contact>) db.dbGetAllContacts();
     }
-    View.OnClickListener deleteContactFunc = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-            AlertDialog.Builder alertDialogBuilder;
-            alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-
-            // set title
-            alertDialogBuilder.setTitle("Delete Contact?");
-            alertDialogBuilder.setIcon(R.drawable.ic_red_trash);
-
-            // set dialog message
-            alertDialogBuilder
-                    .setMessage("Are you sure you want to delete this contact?")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes, delete it.", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-
-                            {
-                                deleteSingleContact(contact_to_delete);
-                                adapter = new CardAdapter(activity, (ArrayList) contacts_full);
-                                card_list.setAdapter(adapter);
-                                adapter.notifyDataSetChanged();
-
-                                Toast toast = Toast.makeText(getApplicationContext(), "Deleted contact.", Toast.LENGTH_SHORT);
-                                toast.show();
-                                onResume();
-                            }
-                        }
-                    })
-                    .setNegativeButton("No, don't delete.", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            onResume();
-                        }
-                    });
-            // create alert dialog
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            // show it
-            alertDialog.show();
-        }
-    };
 
 
 }

@@ -6,7 +6,7 @@ package compile_inc.compile;
 //        db.dbAddContact(testContact);
 
 // Contact()
-public class Contact{
+public class Contact {
     String firstName;
     String lastName;
     String email;
@@ -17,7 +17,7 @@ public class Contact{
     int id;
 
     //default constructor
-    public Contact(){
+    public Contact() {
         firstName = "";
         lastName = "";
         email = "";
@@ -28,7 +28,7 @@ public class Contact{
 
     //constructor
     public Contact(String startFirstName, String startLastName, String startEmail,
-                   String startAddress, String startPhone_num, String startDescription){
+                   String startAddress, String startPhone_num, String startDescription) {
         this.firstName = startFirstName;
         this.lastName = startLastName;
         this.email = startEmail;
@@ -48,7 +48,7 @@ public class Contact{
 
     //constructor with id value
     public Contact(int _id, String startFirstName, String startLastName, String startEmail,
-                   String startAddress, String startPhone_num, String startDescription){
+                   String startAddress, String startPhone_num, String startDescription) {
         this.firstName = startFirstName;
         this.lastName = startLastName;
         this.email = startEmail;
@@ -63,58 +63,71 @@ public class Contact{
     public void setID(int _id) {
         this.id = _id;
     }
-    //sets the first name
-    public void setFirstName(String startFirstName) {
-        this.firstName = startFirstName;
-    }
-    //sets the last name
-    public void setLastName(String startLastName) {
-        this.lastName = startLastName;
-    }
-    //sets the email
-    public void setEmail(String startEmail) {
-        this.email = startEmail;
-    }
-    //sets the address
-    public void setAddress(String startAddress) {
-        this.address = startAddress;
-    }
-    //sets the phone number
-    public void setPhone_num(String startPhone_num) {
-        this.phone_num = startPhone_num;
-    }
-    //sets the description
-    public void setDescription(String startDescription) {
-        this.description = startDescription;
-    }
+
     //the next set of functions will be accessors
     //gets thi ID of the contact
     public int getId() {
         return this.id;
     }
+
     //gets the first name
     public String getFirstName() {
         return this.firstName;
     }
+
+    //sets the first name
+    public void setFirstName(String startFirstName) {
+        this.firstName = startFirstName;
+    }
+
     //gets last name
     public String getLastName() {
         return this.lastName;
     }
+
+    //sets the last name
+    public void setLastName(String startLastName) {
+        this.lastName = startLastName;
+    }
+
     //gets email
     public String getEmail() {
         return this.email;
     }
+
+    //sets the email
+    public void setEmail(String startEmail) {
+        this.email = startEmail;
+    }
+
     //gets address
     public String getAddress() {
         return this.address;
     }
+
+    //sets the address
+    public void setAddress(String startAddress) {
+        this.address = startAddress;
+    }
+
     //gets phone number
     public String getPhone_num() {
         return this.phone_num;
     }
+
+    //sets the phone number
+    public void setPhone_num(String startPhone_num) {
+        this.phone_num = startPhone_num;
+    }
+
     //gets the description
     public String getDescription() {
         return this.description;
+    }
+
+    //sets the description
+    public void setDescription(String startDescription) {
+        this.description = startDescription;
     }
 
     public int isSelected() {

@@ -74,12 +74,14 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
         db.insert(TABLE_CONTACTS, null, values);
         db.close();
     }
+
     //gets a single contact from the database and puts it in a contact object
     public Contact dbGetContact(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_CONTACTS, new String[] { KEY_ID, KEY_FIRST_NAME,
-                KEY_LAST_NAME, KEY_EMAIL, KEY_ADDRESS, KEY_PHONE_NUM, KEY_DESCRIPTION },
-                KEY_ID + "=?", new String[] { String.valueOf(id) }, null, null, null, null);
+        Cursor cursor = db.query(TABLE_CONTACTS, new String[]{KEY_ID, KEY_FIRST_NAME,
+                        KEY_LAST_NAME, KEY_EMAIL, KEY_ADDRESS, KEY_PHONE_NUM, KEY_DESCRIPTION},
+                KEY_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null
+        );
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -89,6 +91,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
                 cursor.getString(4), cursor.getString(5), cursor.getString(6));
         return contact;
     }
+
     //gets a list of all contacts in the database
     public List<Contact> dbGetAllContacts() {
         List<Contact> contactList = new ArrayList<Contact>();
@@ -111,11 +114,12 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
                 contact.setDescription(cursor.getString(6));
                 //adds contact to the list
                 contactList.add(contact);
-            }   while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         //returns arraylist of contact objects with their id's
         return contactList;
     }
+
     //gets number of contacts
     public int dbGetContactsCount() {
         String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
@@ -126,6 +130,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
         //returns the count of contacts
         return cursor.getCount();
     }
+
     //updating single contact
     public int dbUpdateContact(Contact contact) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -139,13 +144,14 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_DESCRIPTION, contact.getDescription());
 
         //updates the whole row for the contact data
-        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[] { String.valueOf
+        return db.update(TABLE_CONTACTS, values, KEY_ID + " = ?", new String[]{String.valueOf
                 (contact.getId())});
     }
+
     //delete single contact
     public void dbDeleteContact(Contact contact) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_CONTACTS, KEY_ID + " = " +String.valueOf(contact.getId()), null);
+        db.delete(TABLE_CONTACTS, KEY_ID + " = " + String.valueOf(contact.getId()), null);
         db.close();
     }
 

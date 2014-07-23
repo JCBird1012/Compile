@@ -1,8 +1,6 @@
 package compile_inc.compile;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -19,13 +17,13 @@ import android.widget.Toast;
 import com.facebook.model.GraphObjectList;
 import com.facebook.model.GraphUser;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SettingsActivity extends FragmentActivity {
     private FbLoginFragment fbFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +84,6 @@ public class SettingsActivity extends FragmentActivity {
     }
 
 
-
     //Adds existing contacts in your people application
     public void onClickPullContacts(View v) {
         AlertDialog.Builder alertDialogBuilder;
@@ -103,7 +100,8 @@ public class SettingsActivity extends FragmentActivity {
                         Toast toast = Toast.makeText(getApplicationContext(), "Imported all contacts.", Toast.LENGTH_SHORT);
                         getAndroidContacts();
                         onResume();
-                        }})
+                    }
+                })
                 .setNegativeButton("No, don't import.", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, just close
@@ -115,6 +113,7 @@ public class SettingsActivity extends FragmentActivity {
         // show it
         alertDialog.show();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -131,7 +130,7 @@ public class SettingsActivity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void getAndroidContacts () {
+    public void getAndroidContacts() {
 
 
         String phoneNumber = null;
@@ -144,7 +143,7 @@ public class SettingsActivity extends FragmentActivity {
         Uri PhoneCONTENT_URI = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
         String Phone_CONTACT_ID = ContactsContract.CommonDataKinds.Phone.CONTACT_ID;
         String NUMBER = ContactsContract.CommonDataKinds.Phone.NUMBER;
-        Uri EmailCONTENT_URI =  ContactsContract.CommonDataKinds.Email.CONTENT_URI;
+        Uri EmailCONTENT_URI = ContactsContract.CommonDataKinds.Email.CONTENT_URI;
         String EmailCONTACT_ID = ContactsContract.CommonDataKinds.Email.CONTACT_ID;
         String DATA = ContactsContract.CommonDataKinds.Email.DATA;
 
@@ -164,23 +163,23 @@ public class SettingsActivity extends FragmentActivity {
 
                 while (cursor.moveToNext()) {
                     Contact newContact = new Contact();
-                    String contact_id = cursor.getString(cursor.getColumnIndex( _ID ));
-                    String name = cursor.getString(cursor.getColumnIndex( DISPLAY_NAME ));
+                    String contact_id = cursor.getString(cursor.getColumnIndex(_ID));
+                    String name = cursor.getString(cursor.getColumnIndex(DISPLAY_NAME));
 
                     //debugging
                     Log.d("Pulling from contacts: ", "Working ..");
-                    int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex( HAS_PHONE_NUMBER )));
+                    int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(HAS_PHONE_NUMBER)));
                     if (hasPhoneNumber > 0) {
 
                         // Query and loop for every phone number of the contact
-                        Cursor phoneCursor = contentResolver.query(PhoneCONTENT_URI, null, Phone_CONTACT_ID + " = ?", new String[] { contact_id }, null);
+                        Cursor phoneCursor = contentResolver.query(PhoneCONTENT_URI, null, Phone_CONTACT_ID + " = ?", new String[]{contact_id}, null);
                         while (phoneCursor.moveToNext()) {
                             phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(NUMBER));
 
                         }
                         phoneCursor.close();
                         // Query and loop for every email of the contact
-                        Cursor emailCursor = contentResolver.query(EmailCONTENT_URI,    null, EmailCONTACT_ID+ " = ?", new String[] { contact_id }, null);
+                        Cursor emailCursor = contentResolver.query(EmailCONTENT_URI, null, EmailCONTACT_ID + " = ?", new String[]{contact_id}, null);
                         while (emailCursor.moveToNext()) {
                             email = emailCursor.getString(emailCursor.getColumnIndex(DATA));
 
@@ -193,16 +192,16 @@ public class SettingsActivity extends FragmentActivity {
                     String spliced[] = name.split("\\s");
                     //checks for an "@" symbol in the first name of the contact pulled from the
                     // local phone contacts to see whether it is actually an email address.
-                    if(spliced[0].indexOf("\u0040") !=-1){
+                    if (spliced[0].indexOf("\u0040") != -1) {
                         newContact.setFirstName("unknown contact information");
                         email = spliced[0];
-                    }   else {
+                    } else {
                         newContact.setFirstName(spliced[0]);
                     }
 
                     //checks to see whether there is or is not a last name placed in the name
                     // category
-                    if(spliced.length > 1 ) {
+                    if (spliced.length > 1) {
                         newContact.setLastName(spliced[1]);
                     }
 
@@ -220,14 +219,15 @@ public class SettingsActivity extends FragmentActivity {
             }
         }
     }
+
     public void syncFbFriends(View v) {
         ArrayList<Contact> contacts = (ArrayList) MainActivity.db.dbGetAllContacts();
         GraphObjectList<GraphUser> fbFriends = FbLoginFragment.fbObjectList;
         URL url = null;
-        for(GraphUser usr: fbFriends){
-            for(Contact contData: contacts){
-                if(contData.getFirstName() == usr.getFirstName()){
-                    if(contData.getLastName() == usr.getLastName()) {
+        for (GraphUser usr : fbFriends) {
+            for (Contact contData : contacts) {
+                if (contData.getFirstName() == usr.getFirstName()) {
+                    if (contData.getLastName() == usr.getLastName()) {
 //                        try {
 //                            url = new URL("http://graph.facebook.com/" + "");
 //                        } catch (MalformedURLException){

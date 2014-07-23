@@ -15,7 +15,6 @@ import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
-import com.facebook.model.GraphObject;
 import com.facebook.model.GraphObjectList;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
@@ -27,9 +26,16 @@ import java.util.Arrays;
  */
 public class FbLoginFragment extends Fragment {
     private static final String TAG = "FbLoginFragment";
-    private UiLifecycleHelper uiHelper;
     public static GraphObjectList<GraphUser> fbObjectList;
+    private UiLifecycleHelper uiHelper;
     private View view;
+    private Session.StatusCallback callback = new Session.StatusCallback() {
+        @Override
+        public void call(Session session, SessionState state, Exception exception) {
+            onSessionStateChange(session, state, exception);
+        }
+    };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,19 +86,13 @@ public class FbLoginFragment extends Fragment {
         }
     }
 
-    private Session.StatusCallback callback = new Session.StatusCallback() {
-        @Override
-        public void call(Session session, SessionState state, Exception exception) {
-            onSessionStateChange(session, state, exception);
-        }
-    };
     @Override
     public void onResume() {
         super.onResume();
 
         Session session = Session.getActiveSession();
         if (session != null &&
-                (session.isOpened() || session.isClosed()) ) {
+                (session.isOpened() || session.isClosed())) {
             onSessionStateChange(session, session.getState(), null);
         }
 
