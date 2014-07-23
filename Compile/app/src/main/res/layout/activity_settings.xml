@@ -72,9 +72,7 @@
         <com.facebook.widget.LoginButton
             android:id="@+id/authButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-             />
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
